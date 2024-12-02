@@ -105,7 +105,6 @@ public class KeyHandler implements KeyListener {
                     gp.ui.commandNum = 0;
                 }
             }
-            
         }
 
         // PLAY STATE
