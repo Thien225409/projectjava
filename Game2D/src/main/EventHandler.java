@@ -51,8 +51,9 @@ public class EventHandler {
 
         gp.gameState = gameState;
         gp.ui.currentDialogue = "Teleport!";
-        gp.player.worldX = 60*gp.tileSize;
-        gp.player.worldY = 5*gp.tileSize;
+        gp.player.worldX = 52*gp.tileSize;
+        // TODO: Ô (51,4) sẽ có một cửa để teleport ra
+        gp.player.worldY = 4*gp.tileSize;
     }
 
     public boolean hit(int eventCol, int eventRow, String reqDirection){

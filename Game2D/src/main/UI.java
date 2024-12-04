@@ -309,14 +309,43 @@ public class UI {
         
 
     }
+    
     public void drawPauseScreen(){
-        g2.setFont(arial_80);
-        String text = "PAUSED";
-        int x = getXforCenterText(text);
-        int y = gp.screenHeight/2;
 
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(80F));
+
+        String text = "PAUSE";
+        int x = getXforCenterText(text);
+        int y = gp.tileSize*3;
         g2.drawString(text, x, y);
+
+        g2.setFont(g2.getFont().deriveFont(42F));
+        text = "Continue";
+        x = getXforCenterText(text);
+        y += gp.tileSize*3;
+        g2.drawString(text, x, y);
+        if(commandNum == 0){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        text = "Back";
+        x = getXforCenterText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(commandNum == 1){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        text = "Exit";
+        x = getXforCenterText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(commandNum == 2){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
     }
+
     public void drawDialogueScreen(){
 
         // WINDOW
