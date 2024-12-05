@@ -37,7 +37,7 @@ public class Player extends Entity {
     public void setDefaultValues(){
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
-        speed = 4;
+        speed = 3;
         direction = "down";
 
         // PLAYER STATUS
@@ -45,14 +45,25 @@ public class Player extends Entity {
         life = maxLife;// 1 life = 1/2 heart
     }
     public void getPlayerImage(){
-        up1 = setup("/player/player_up1");
-        up2 = setup("/player/player_up2");
-        down1 = setup("/player/player_down1");
-        down2 = setup("/player/player_down2");
-        right1 = setup("/player/player_right1");
-        right2 = setup("/player/player_right2");
-        left1 = setup("/player/player_left1");
-        left2 = setup("/player/player_left2");
+        up1 = setup("/player/runsau1");
+        up2 = setup("/player/runsau2");
+        up3 = setup("/player/runsau3");
+        up4 = setup("/player/runsau4");
+
+        down1 = setup("/player/runtruoc1");
+        down2 = setup("/player/runtruoc2");
+        down3 = setup("/player/runtruoc3");
+        down4 = setup("/player/runtruoc4");
+
+        right1 = setup("/player/runright1");
+        right2 = setup("/player/runright2");
+        right3 = setup("/player/runright3");
+        right4 = setup("/player/runright4");
+
+        left1 = setup("/player/runleft1");
+        left2 = setup("/player/runleft2");
+        left3 = setup("/player/runleft3");
+        left4 = setup("/player/runleft4");
     }
     public void update(){
 
@@ -100,14 +111,16 @@ public class Player extends Entity {
             spriteCounter ++;
             if(spriteCounter > 10){
                 if(spriteNum == 1) spriteNum = 2;
-                else if(spriteNum == 2) spriteNum =1;
+                else if(spriteNum == 2) spriteNum = 3;
+                else if(spriteNum == 3) spriteNum = 4;
+                else if(spriteNum == 4) spriteNum = 1;
                 spriteCounter = 0;
             }
         }
         else{
             standCounter ++;
             if(standCounter == 20){
-                spriteNum = 1;
+                spriteNum = 4;
                 standCounter = 0;
             }
         }
@@ -136,18 +149,26 @@ public class Player extends Entity {
             case "up":
                 if(spriteNum == 1) image = up1;
                 if(spriteNum == 2) image = up2;
+                if(spriteNum == 3) image = up3;
+                if(spriteNum == 4) image = up4;
                 break;
             case "down":
                 if(spriteNum == 1) image = down1;
                 if(spriteNum == 2) image = down2;
+                if(spriteNum == 3) image = down3;
+                if(spriteNum == 4) image = down4;
                 break;    
             case "right":
                 if(spriteNum == 1) image = right1;
                 if(spriteNum == 2) image = right2;
+                if(spriteNum == 3) image = right3;
+                if(spriteNum == 4) image = right4;
                 break;
             case "left":
                 if(spriteNum == 1) image = left1;
                 if(spriteNum == 2) image = left2;
+                if(spriteNum == 3) image = left3;
+                if(spriteNum == 4) image = left4;
                 break;
         }
         g2.drawImage(image , screenX , screenY, null );
