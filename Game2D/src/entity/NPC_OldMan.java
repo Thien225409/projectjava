@@ -58,7 +58,6 @@ public class NPC_OldMan extends Entity {
 
             actionLockCounter = 0;
         }
-
     }
     public void setDialogue(){
 

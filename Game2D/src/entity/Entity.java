@@ -69,7 +69,6 @@ public class Entity {
             else if(spriteNum == 2) spriteNum =1;
             spriteCounter = 0;
         }
-
     }
     public void draw(Graphics2D g2){
         
@@ -83,27 +82,26 @@ public class Entity {
             worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
             worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){
 
-                switch(direction){
-                    case "up":
-                        if(spriteNum == 1) image = up1;
-                        if(spriteNum == 2) image = up2;
-                        break;
-                    case "down":
-                        if(spriteNum == 1) image = down1;
-                        if(spriteNum == 2) image = down2;
-                        break;    
-                    case "right":
-                        if(spriteNum == 1) image = right1;
-                        if(spriteNum == 2) image = right2;
-                        break;
-                    case "left":
-                        if(spriteNum == 1) image = left1;
-                        if(spriteNum == 2) image = left2;
-                        break;
-                }
-                g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
+            switch(direction){
+                case "up":
+                    if(spriteNum == 1) image = up1;
+                    if(spriteNum == 2) image = up2;
+                    break;
+                case "down":
+                    if(spriteNum == 1) image = down1;
+                    if(spriteNum == 2) image = down2;
+                    break;    
+                case "right":
+                    if(spriteNum == 1) image = right1;
+                    if(spriteNum == 2) image = right2;
+                    break;
+                case "left":
+                    if(spriteNum == 1) image = left1;
+                    if(spriteNum == 2) image = left2;
+                    break;
+            }
+            g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
         }
-
     }
     public BufferedImage setup(String imagePath){
 
@@ -118,6 +116,5 @@ public class Entity {
             e.printStackTrace();
         }
         return image;
-
     }
 }

@@ -7,7 +7,6 @@ public class KeyHandler implements KeyListener {
 
     GamePanel gp;
 
-
     public boolean upPressed , downPressed , rightPressed, leftPressed, enterPressed;
     //DEBUG
     boolean checkDrawTime = false;

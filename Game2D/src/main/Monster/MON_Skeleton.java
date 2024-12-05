@@ -5,9 +5,9 @@ import java.util.Random;
 import entity.Entity;
 import main.GamePanel;
 
-public class MON_Slime extends Entity{
+public class MON_Skeleton extends Entity{
 
-    public MON_Slime(GamePanel gp){
+    public MON_Skeleton(GamePanel gp){
         super(gp);
 
         name = "Smile";
@@ -18,25 +18,25 @@ public class MON_Slime extends Entity{
 
     public void getImage(){
 
-        up1 = setup("/monster/slime1");
-        up2 = setup("/monster/slime1");
-        up3 = setup("/monster/slime1");
-        up4 = setup("/monster/slime1");
+        up1 = setup("/monster/skeleton_up1");
+        up2 = setup("/monster/skeleton_up2");
+        up3 = setup("/monster/skeleton_1");
+        up4 = setup("/monster/skeleton_1");
 
-        down1 = setup("/monster/slime2");
-        down2 = setup("/monster/slime2");
-        down3 = setup("/monster/slime2");
-        down4 = setup("/monster/slime2");
+        down1 = setup("/monster/skeleton_down1");
+        down2 = setup("/monster/skeleton_down2");
+        down3 = setup("/monster/skeleton_2");
+        down4 = setup("/monster/skeleton_2");
         
-        right1 = setup("/monster/slime1");
-        right2 = setup("/monster/slime1");
-        right3 = setup("/monster/slime1");
-        right4 = setup("/monster/slime1");
+        right1 = setup("/monster/skeleton_right1");
+        right2 = setup("/monster/skeleton_right2");
+        right3 = setup("/monster/skeleton_1");
+        right4 = setup("/monster/skeleton_1");
     
-        left1 = setup("/monster/slime2");
-        left2 = setup("/monster/slime2");
-        left3 = setup("/monster/slime2");
-        left4 = setup("/monster/slime2");
+        left1 = setup("/monster/skeleton_left1");
+        left2 = setup("/monster/skeleton_left2");
+        left3 = setup("/monster/skeleton_2");
+        left4 = setup("/monster/skeleton_2");
     }
 
     public void setAction(){

@@ -69,7 +69,20 @@ public class Player extends Entity {
 
         if(keyH.upPressed == true || keyH.downPressed == true 
             || keyH.rightPressed == true || keyH.leftPressed == true){
-            if(keyH.upPressed == true){
+            if(keyH.upPressed == true && keyH.rightPressed == true){
+                direction = "up_right";
+            }
+            else if(keyH.upPressed == true && keyH.leftPressed == true){
+                direction = "up_left";
+            }
+            else if(keyH.downPressed == true && keyH.rightPressed == true){
+                direction = "down_right";
+            }
+            else if(keyH.downPressed == true && keyH.leftPressed == true){
+                direction = "down_left";
+            }
+
+            else if(keyH.upPressed == true){
                 direction = "up";
             }
             else if(keyH.downPressed == true){
@@ -105,7 +118,22 @@ public class Player extends Entity {
                     case "down": worldY += speed; break;
                     case "right": worldX += speed; break;
                     case "left": worldX -= speed; break;
-                    default: break;
+                    case "up_right":
+                        worldY -= (int) (speed / Math.sqrt(2));
+                        worldX += (int) (speed / Math.sqrt(2));
+                        break;
+                    case "up_left":
+                        worldY -= (int) (speed / Math.sqrt(2));
+                        worldX -= (int) (speed / Math.sqrt(2));
+                        break;
+                    case "down_right":
+                        worldY += (int) (speed / Math.sqrt(2));
+                        worldX += (int) (speed / Math.sqrt(2));
+                        break;
+                    case "down_left":
+                        worldY += (int) (speed / Math.sqrt(2));
+                        worldX -= (int) (speed / Math.sqrt(2));
+                        break;
                 }
             }
             spriteCounter ++;
@@ -165,6 +193,30 @@ public class Player extends Entity {
                 if(spriteNum == 4) image = right4;
                 break;
             case "left":
+                if(spriteNum == 1) image = left1;
+                if(spriteNum == 2) image = left2;
+                if(spriteNum == 3) image = left3;
+                if(spriteNum == 4) image = left4;
+                break;
+            case "up_right":
+                if(spriteNum == 1) image = right1;
+                if(spriteNum == 2) image = right2;
+                if(spriteNum == 3) image = right3;
+                if(spriteNum == 4) image = right4;
+                break;
+            case "up_left":
+                if(spriteNum == 1) image = left1;
+                if(spriteNum == 2) image = left2;
+                if(spriteNum == 3) image = left3;
+                if(spriteNum == 4) image = left4;
+                break;
+            case "down_right":
+                if(spriteNum == 1) image = right1;
+                if(spriteNum == 2) image = right2;
+                if(spriteNum == 3) image = right3;
+                if(spriteNum == 4) image = right4;
+                break;
+            case "down_left":
                 if(spriteNum == 1) image = left1;
                 if(spriteNum == 2) image = left2;
                 if(spriteNum == 3) image = left3;
