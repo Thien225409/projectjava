@@ -107,6 +107,10 @@ public class Player extends Entity {
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
+            // CHECK MONSTER COLLISION
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
             // CHECK EVENT
             gp.eHandler.checkEvent();
 
@@ -152,16 +156,24 @@ public class Player extends Entity {
                 standCounter = 0;
             }
         }
-    }
-    public void pickUpObject(int i){
 
+        // INVINCIBLE COUNTER
+        if(invincible == true){
+            invincibleCounter ++;
+            if(invincibleCounter > 60){
+                invincible = false;
+
+            }
+        }
+    }
+
+    public void pickUpObject(int i){
         if(i != 999){
            // TODO: Xử lí va chạm với vật thể
         }
-
     }
-    public void interactNPC(int i){
 
+    public void interactNPC(int i){
         if(i != 999){
             if(gp.keyH.enterPressed == true){
                 gp.gameState = gp.dialogueState;
@@ -169,6 +181,16 @@ public class Player extends Entity {
             }
         }
     }
+
+    public void contactMonster(int i){
+        if(i != 999){
+            if(invincible == false){
+                life -= 1;
+                invincible = true;
+            }
+        }
+    }
+
     public void draw(Graphics2D g2){
 
         BufferedImage image = null;
@@ -222,7 +244,28 @@ public class Player extends Entity {
                 if(spriteNum == 3) image = left3;
                 if(spriteNum == 4) image = left4;
                 break;
+    
         }
-        g2.drawImage(image , screenX , screenY, null );
+
+        int x = screenX;
+        int y = screenY;
+
+        if(screenX > worldX){
+            x = worldX;
+        }
+        if(screenY > worldY){
+            y = worldY;
+        }
+        int rightOffset = gp.screenWidth - screenX;
+        if(rightOffset > gp.worldWidth - worldX){
+            x = gp.screenWidth - (gp.worldWidth - worldX);
+        }
+
+        int bottomOffset = gp.screenHeight - screenY;
+        if(bottomOffset > gp.worldHeight - worldY){
+            y = gp.screenHeight - (gp.worldHeight - worldY);
+        }
+        
+        g2.drawImage(image , x , y, null );
     }
 }

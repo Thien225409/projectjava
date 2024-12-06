@@ -10,33 +10,31 @@ public class MON_Skeleton extends Entity{
     public MON_Skeleton(GamePanel gp){
         super(gp);
 
-        name = "Smile";
+        name = "Skeleton";
         speed = 2;
         maxLife = 4;
         life = maxLife;
+
+        solidArea.x = 3;
+        solidArea.y = 18;
+        solidArea.width = 42;
+        solidArea.height = 30;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+
+        getImage();
     }
 
     public void getImage(){
 
         up1 = setup("/monster/skeleton_up1");
         up2 = setup("/monster/skeleton_up2");
-        up3 = setup("/monster/skeleton_1");
-        up4 = setup("/monster/skeleton_1");
-
         down1 = setup("/monster/skeleton_down1");
         down2 = setup("/monster/skeleton_down2");
-        down3 = setup("/monster/skeleton_2");
-        down4 = setup("/monster/skeleton_2");
-        
         right1 = setup("/monster/skeleton_right1");
         right2 = setup("/monster/skeleton_right2");
-        right3 = setup("/monster/skeleton_1");
-        right4 = setup("/monster/skeleton_1");
-    
         left1 = setup("/monster/skeleton_left1");
         left2 = setup("/monster/skeleton_left2");
-        left3 = setup("/monster/skeleton_2");
-        left4 = setup("/monster/skeleton_2");
     }
 
     public void setAction(){

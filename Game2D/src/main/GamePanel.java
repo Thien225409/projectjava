@@ -26,6 +26,8 @@ public class GamePanel extends JPanel implements Runnable {
     //WORLD SETTINGS
     public final int maxWorldCol = 71;
     public final int maxWorldRow = 51;
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize * maxWorldRow;
 
     //FPS
     int FPS = 60;
@@ -66,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         setFocusable(true);
-    }
+    }   
 
     public void setupGame(){
 
@@ -123,7 +125,7 @@ public class GamePanel extends JPanel implements Runnable {
                     npc[i].update();
                 }
             }
-
+            // MONSTER
             for(int i = 0; i < monster.length; i++){
                 if(monster[i] != null){
                     monster[i].update();
@@ -157,19 +159,19 @@ public class GamePanel extends JPanel implements Runnable {
             
             // ADD ENTITIES TO THE LIST
             entityList.add(player);
-
+            // NPC
             for(int i = 0; i < npc.length ; i++){
                 if(npc[i] != null){
                     entityList.add(npc[i]);
                 }
             }
-
+            // OBJECTS
             for(int i = 0; i < obj.length; i++){
                 if(obj[i] != null){
                     entityList.add(obj[i]);
                 }
             }
-
+            // MONSTER
             for(int i = 0; i < monster.length; i++){
                 if(monster[i] != null){
                     entityList.add(monster[i]);
@@ -181,7 +183,6 @@ public class GamePanel extends JPanel implements Runnable {
 
                 @Override
                 public int compare(Entity e1, Entity e2) {
-                    
                     int result = Integer.compare(e1.worldY, e2.worldY);
                     return result;
                 }
@@ -218,15 +219,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
     public void stopMusic(){
-
         music.stop();
-
     }
     public void playSE(int i){
-
         se.setFile(i);
         se.play();
-
     }
 
 }

@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
 import object.OBJ_Heart;
 import entity.Entity;
 
@@ -58,6 +57,7 @@ public class UI {
     //     int xCenter = gp.screenWidth/2 - textLength/2;
     //     g2.drawString(text, xCenter , y);
     // }
+    //TODO: Hàm in ra Congratulation khi chiến thắng
     /* public void draw(Graphics2D g2){
         if(gameFinished == true){
 
@@ -306,8 +306,6 @@ public class UI {
             g2.drawString(text, x, y);
             g2.drawString(">", x-gp.tileSize, y);
         }
-        
-
     }
     
     public void drawPauseScreen(){
