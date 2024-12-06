@@ -9,38 +9,40 @@ import main.GamePanel;
 import main.UtilityTool;
 
 public class Entity {
+
     GamePanel gp;
+    public BufferedImage up1 , up2 ,up3, up4, down1 , down2 ,down3 ,down4;
+    public BufferedImage left1 , left2, left3, left4, right1 , right2, right3, right4;
 
-
-    public int worldX , worldY;
-    public int speed;
-
-    public BufferedImage up1 , up2 ,up3, up4;
-    public BufferedImage down1 , down2 ,down3 ,down4;
-    public BufferedImage left1 , left2, left3, left4;
-    public BufferedImage right1 , right2, right3, right4;
-    public String direction = "down";
-
-    public int spriteCounter = 0;
-    public int spriteNum = 1;
-
-    public Rectangle solidArea = new Rectangle(0 , 0 , 48 , 48);
-    public int solidAreaDefaultX;
-    public int solidAreaDefaultY;
-    public boolean collisionOn = false;
-    public int actionLockCounter = 0;
-
-    public boolean invincible = false;
-    public int invincibleCounter = 0;
-
-    String dialogues [] = new String[20];
-    int dialogueIndex = 0;
+    public BufferedImage attackUp1, attackUp2, attackUp3, attackUp4, attackUp5,
+    attackDown1, attackDown2, attackDown3, attackDown4, attackDown5,
+    attackLeft1, attackLeft2, attackLeft3, attackLeft4, attackLeft5,
+    attackRight1, attackRight2, attackRight3, attackRight4, attackRight5;
 
     public BufferedImage image, image2, image3;
-    public String name;
+    public Rectangle solidArea = new Rectangle(0 , 0 , 48 , 48);
+    public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collision = false;
+    String dialogues [] = new String[20];
 
-    // CHARACTER STATUS
+    // STATE
+    public int worldX , worldY;
+    public String direction = "down";
+    public int spriteNum = 1;
+    int dialogueIndex = 0;
+    public boolean collisionOn = false;
+    public boolean invincible = false;
+    public boolean attacking = false;
+
+    // COUNTER
+    public int spriteCounter = 0;
+    public int actionLockCounter = 0;
+    public int invincibleCounter = 0;
+
+    // CHARACTER ATTIBUTES
+    public int type; // 0: player , 1: npc , 2: monster
+    public String name;
+    public int speed;
     public int maxLife;
     public int life;
 
@@ -57,8 +59,16 @@ public class Entity {
         gp.cChecker.checkObject(this, false);
         gp.cChecker.checkEntity(this, gp.npc);
         gp.cChecker.checkEntity(this, gp.monster);
-        gp.cChecker.checkPlayer(this);
 
+        boolean contactPlayer = gp.cChecker.checkPlayer(this);
+        if(this.type == 2 && contactPlayer == true){
+            if(gp.player.invincible == false){
+                // We can give damage
+                gp.player.life -= 1;
+                gp.player.invincible = true;
+            }
+
+        }
         if(collisionOn == false){
             switch (direction) {
                 case "up": worldY -= speed ; break;
@@ -132,7 +142,7 @@ public class Entity {
                 g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);  
         }
     }
-    public BufferedImage setup(String imagePath){
+    public BufferedImage setup(String imagePath, int width, int height){
 
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
@@ -140,7 +150,7 @@ public class Entity {
         try {
             
             image = ImageIO.read(getClass().getResourceAsStream("/res" + imagePath + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }
