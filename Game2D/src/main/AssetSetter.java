@@ -1,6 +1,7 @@
 package main;
 
 import entity.NPC_OldMan;
+import main.Monster.MON_Ghost;
 import main.Monster.MON_Skeleton;
 import object.OBJ_Door;
 
