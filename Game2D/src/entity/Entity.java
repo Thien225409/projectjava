@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -71,7 +72,7 @@ public class Entity {
         if(this.type == 2 && contactPlayer == true){
             if(gp.player.invincible == false){
                 // We can give damage
-                //gp.player.life -= 1;
+                gp.player.life -= 1;
                 gp.player.invincible = true;
             }
 
@@ -102,83 +103,89 @@ public class Entity {
         }
     }
     public void draw(Graphics2D g2){
-        
-        BufferedImage image = null;
 
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
         
         // Stop moving the camere at the edge
+        int x = screenX;
+        int y = screenY;
+
         if(gp.player.screenX > gp.player.worldX){
-            screenX = worldX;
+            x = worldX;
         }
         if(gp.player.screenY > gp.player.worldY){
-            screenY = worldY;
+            y = worldY;
         }
         int rightOffset = gp.screenWidth - gp.player.screenX;
         if(rightOffset > gp.worldWidth - gp.player.worldX){
-            screenX = gp.screenWidth - (gp.worldWidth - worldX);
+            x = gp.screenWidth - (gp.worldWidth - worldX);
         }
 
         int bottomOffset = gp.screenHeight - gp.player.screenY;
         if(bottomOffset > gp.worldHeight - gp.player.worldY){
-            screenY = gp.screenHeight - (gp.worldHeight - worldY);
+            y = gp.screenHeight - (gp.worldHeight - worldY);
         }
 
         if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
             worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
             worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
             worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){
-
-            switch(direction){
-                case "up":
-                    if(spriteNum == 1) image = up1;
-                    if(spriteNum == 2) image = up2;
-                    break;
-                case "down":
-                    if(spriteNum == 1) image = down1;
-                    if(spriteNum == 2) image = down2;
-                    break;    
-                case "right":
-                    if(spriteNum == 1) image = right1;
-                    if(spriteNum == 2) image = right2;
-                    break;
-                case "left":
-                    if(spriteNum == 1) image = left1;
-                    if(spriteNum == 2) image = left2;
-                    break;
-            }
-            // Làm mờ khi nhân sát thương
-            if(invincible == true){
-                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
-            }
-
-            if(dying == true){
-                dyingAnimation(g2);//TODO: Khi quái chết thì tải animation die của quái
-            }
-
-            g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
             
+                subdraw(g2, screenX, screenY, x, y);
         }
         else if(gp.player.screenX > gp.player.worldX || gp.player.screenY > gp.player.worldY ||
-                rightOffset > gp.worldWidth - gp.player.worldX ||
-                bottomOffset > gp.worldHeight - gp.player.worldY) {
-                // Làm mờ khi nhân sát thương
-                if(invincible == true){
-                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
-                }
-
-                if(dying == true){
-                    dyingAnimation(g2);
-                }
-
-                g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
-                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); 
+            rightOffset > gp.worldWidth - gp.player.worldX ||
+            bottomOffset > gp.worldHeight - gp.player.worldY) {
+                // WHEN STOP CAMERA
+                subdraw(g2, screenX, screenY, x, y);
         }
-        
     }
 
+    public void subdraw(Graphics2D g2, int screenX, int screenY, int x, int y){
+
+        BufferedImage image = null;
+        switch(direction){
+            case "up":
+                if(spriteNum == 1) image = up1;
+                if(spriteNum == 2) image = up2;
+                break;
+            case "down":
+                if(spriteNum == 1) image = down1;
+                if(spriteNum == 2) image = down2;
+                break;    
+            case "right":
+                if(spriteNum == 1) image = right1;
+                if(spriteNum == 2) image = right2;
+                break;
+            case "left":
+                if(spriteNum == 1) image = left1;
+                if(spriteNum == 2) image = left2;
+                break;
+        }
+
+        // Monster HP bar
+        if(type == 2){
+            g2.setColor(new Color(35,35,35));
+            g2.fillRect(screenX - 1,screenY - 16,gp.tileSize+2,7);
+            g2.setColor(new Color(255,0,30));
+            g2.fillRect(screenX, screenY-15, gp.tileSize, 5);
+        }
+
+        // Làm mờ khi nhân sát thương
+        if(invincible == true){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+
+        if(dying == true){
+            dyingAnimation(g2);//TODO: Khi quái chết thì tải animation die của quái
+        }
+
+        g2.drawImage(image, x , y , gp.tileSize , gp.tileSize , null);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        
+    }
+    
     public void dyingAnimation(Graphics2D g2){
 
         dyingCounter ++;

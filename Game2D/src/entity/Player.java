@@ -331,7 +331,7 @@ public class Player extends Entity {
     public void contactMonster(int i){
         if(i != 999){
             if(invincible == false){
-                // life -= 1;
+                life -= 1;
                 invincible = true;
             }
         }
@@ -372,7 +372,7 @@ public class Player extends Entity {
             x = gp.screenWidth - (gp.worldWidth - worldX);
         }
 
-        int bottomOffset = gp.screenHeight - screenX;
+        int bottomOffset = gp.screenHeight - screenY;
         if(bottomOffset > gp.worldHeight - worldY){
             y = gp.screenHeight - (gp.worldHeight - worldY);
         }
@@ -465,6 +465,7 @@ public class Player extends Entity {
         
         if(invincible == true){
             // TODO:Vẽ cái gì đó khi player bị nhận sát thương
+            
         }
         g2.drawImage(image , x, y, null );
     }
