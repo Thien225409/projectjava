@@ -1,11 +1,9 @@
 package main.Monster;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-
 import entity.Entity;
 import main.GamePanel;
 
@@ -187,13 +185,29 @@ public class MON_Ghost extends Entity{
         }
 
         // Monster HP bar
-        g2.setColor(new Color(35,35,35));
-        g2.fillRect(screenX - 1,screenY - 16,gp.tileSize+2,7);
-        g2.setColor(new Color(255,0,30));
-        g2.fillRect(screenX, screenY-15, gp.tileSize, 5);
+
+        if(hpBarOn == true){
+
+            double oneScale = (double) gp.tileSize/maxLife;
+            double hpBarValue = oneScale*life;
+
+            g2.setColor(new Color(35,35,35));
+            g2.fillRect(screenX - 1,screenY - 16,gp.tileSize+2,7);
+            g2.setColor(new Color(255,0,30));
+            g2.fillRect(screenX, screenY-15, (int) hpBarValue, 5);
+
+            hpBarCounter++;
+            if(hpBarCounter > 600){
+                hpBarCounter = 0;
+                hpBarOn = false;
+            }
+        }
+        
         // Làm mờ khi nhân sát thương
         if(invincible == true){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+            hpBarOn = true;
+            hpBarCounter = 0;
+            changeAlpha(g2, 0.4f);;
         }
 
         if(dying == true){
@@ -201,7 +215,7 @@ public class MON_Ghost extends Entity{
         }
 
         g2.drawImage(image, screenX , screenY, gp.tileSize , gp.tileSize , null);
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); 
+        changeAlpha(g2, 1f);
     }
 
     public void setAction(){
@@ -226,5 +240,11 @@ public class MON_Ghost extends Entity{
 
             actionLockCounter = 0;
         }
+    }
+
+    public void damageReaction(){
+
+        actionLockCounter = 0;
+        direction = gp.player.direction;
     }
 }

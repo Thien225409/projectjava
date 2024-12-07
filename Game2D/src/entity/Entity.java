@@ -40,12 +40,14 @@ public class Entity {
     public boolean attacking = false;
     public boolean alive = true;
     public boolean dying = false;
+    public boolean hpBarOn = false;
 
     // COUNTER
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
     public int invincibleCounter = 0;
     public int dyingCounter = 0;
+    public int hpBarCounter = 0;
 
     // CHARACTER ATTIBUTES
     public int type; // 0: player , 1: npc , 2: monster
@@ -58,6 +60,7 @@ public class Entity {
         this.gp = gp;
     }
     public void setAction() {}
+    public void damageReaction(){}
     public void speak() {}
     public void update(){
 
@@ -162,16 +165,27 @@ public class Entity {
         }
 
         // Monster HP bar
-        if(type == 2){
+        if(type == 2 && hpBarOn == true){
+            double oneScale = (double) gp.tileSize/maxLife;
+            double hpBarValue = oneScale*life;
+
             g2.setColor(new Color(35,35,35));
             g2.fillRect(screenX - 1,screenY - 16,gp.tileSize+2,7);
             g2.setColor(new Color(255,0,30));
-            g2.fillRect(screenX, screenY-15, gp.tileSize, 5);
+            g2.fillRect(screenX, screenY-15, (int) hpBarValue, 5);
+
+            hpBarCounter++;
+            if(hpBarCounter > 600){
+                hpBarCounter = 0;
+                hpBarOn = false;
+            }
         }
 
         // Làm mờ khi nhân sát thương
         if(invincible == true){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+            hpBarOn = true;
+            hpBarCounter = 0;
+            changeAlpha(g2, 0.4f);
         }
 
         if(dying == true){
@@ -179,7 +193,7 @@ public class Entity {
         }
 
         g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        changeAlpha(g2, 1f);
         
     }
     
