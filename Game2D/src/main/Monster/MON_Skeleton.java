@@ -14,7 +14,7 @@ public class MON_Skeleton extends Entity{
         this.gp = gp;
         type = 2;
         name = "Skeleton";
-        speed = 2;
+        speed = 1;
         maxLife = 4;
         life = maxLife;
 

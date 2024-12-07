@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -11,16 +12,19 @@ import main.UtilityTool;
 public class Entity {
 
     GamePanel gp;
-    public BufferedImage up1 , up2 ,up3, up4, down1 , down2 ,down3 ,down4;
-    public BufferedImage left1 , left2, left3, left4, right1 , right2, right3, right4;
+    public BufferedImage up1 , up2 ,up3, up4,up5,up6,up7,up8,
+    down1 , down2 ,down3 ,down4,down5,down6,down7,down8,
+    right1 , right2 ,right3 ,right4,right5,right6,right7,right8,
+    left1 , left2 ,left3 ,left4,left5,left6,left7,left8;
 
-    public BufferedImage attackUp1, attackUp2, attackUp3, attackUp4, attackUp5,
-    attackDown1, attackDown2, attackDown3, attackDown4, attackDown5,
-    attackLeft1, attackLeft2, attackLeft3, attackLeft4, attackLeft5,
-    attackRight1, attackRight2, attackRight3, attackRight4, attackRight5;
+    public BufferedImage attackUp1, attackUp2, attackUp3, attackUp4, attackUp5,attackUp6,
+    attackDown1, attackDown2, attackDown3, attackDown4, attackDown5,attackDown6,
+    attackLeft1, attackLeft2, attackLeft3, attackLeft4, attackLeft5,attackLeft6,
+    attackRight1, attackRight2, attackRight3, attackRight4, attackRight5,attackRight6;
 
     public BufferedImage image, image2, image3;
     public Rectangle solidArea = new Rectangle(0 , 0 , 48 , 48);
+    public Rectangle attackArea = new Rectangle(0, 0, 0,0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collision = false;
     String dialogues [] = new String[20];
@@ -85,6 +89,14 @@ public class Entity {
             else if(spriteNum == 2) spriteNum =1;
             spriteCounter = 0;
         }
+
+        if(invincible == true){
+            invincibleCounter ++;
+            if(invincibleCounter > 40){
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
     public void draw(Graphics2D g2){
         
@@ -133,13 +145,25 @@ public class Entity {
                     if(spriteNum == 2) image = left2;
                     break;
             }
+            // Làm mờ khi nhân sát thương
+            if(invincible == true){
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+            }
+
             g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+            
         }
         else if(gp.player.screenX > gp.player.worldX || 
                 gp.player.screenY > gp.player.worldY ||
                 rightOffset > gp.worldWidth - gp.player.worldX ||
                 bottomOffset > gp.worldHeight - gp.player.worldY) {
-                g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);  
+                // Làm mờ khi nhân sát thương
+                if(invincible == true){
+                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+                }
+                g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); 
         }
     }
     public BufferedImage setup(String imagePath, int width, int height){
