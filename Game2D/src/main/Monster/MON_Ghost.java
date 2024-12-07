@@ -71,10 +71,26 @@ public class MON_Ghost extends Entity{
             }
         }
         switch (direction) {
-        case "up": worldY -= speed ; break;
-        case "down": worldY += speed; break;
-        case "right": worldX += speed; break;
-        case "left": worldX -= speed; break;
+        case "up": 
+        	if(worldY > 0 * gp.tileSize && worldY < 50* gp.tileSize) {
+        		worldY -= speed ;           		
+        	}         	     	
+        	break;
+        case "down": 
+        	if(worldY < 50* gp.tileSize && worldY > 0* gp.tileSize) {
+        		worldY += speed; 
+        	}
+        	break;
+        case "right": 
+        	if(worldX < 70* gp.tileSize && worldX > 0* gp.tileSize) {
+        		worldX += speed; 
+        	}
+        	break;
+        case "left": 
+        	if(worldX > 0* gp.tileSize && worldX < 70* gp.tileSize) {
+        		worldX -= speed;
+        	}  
+        	break;
         default: break;
         }
         
