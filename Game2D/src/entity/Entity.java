@@ -141,7 +141,7 @@ public class Entity {
                 subdraw(g2, screenX, screenY, x, y);
         }
     }
-
+    // SUBDRAW
     public void subdraw(Graphics2D g2, int screenX, int screenY, int x, int y){
 
         BufferedImage image = null;

@@ -133,14 +133,14 @@ public class MON_Ghost extends Entity{
 
             switch(direction){
                 case "up":
-                	 if(spriteNum == 1) image = up1;
-                     if(spriteNum == 2) image = up2;
-                     if(spriteNum == 3) image = up3;
-                     if(spriteNum == 4) image = up4;
-                     if(spriteNum == 5) image = up5;
-                     if(spriteNum == 6) image = up6;
-                     if(spriteNum == 7) image = up7;
-                     if(spriteNum == 8) image = up8;
+                	if(spriteNum == 1) image = up1;
+                    if(spriteNum == 2) image = up2;
+                    if(spriteNum == 3) image = up3;
+                    if(spriteNum == 4) image = up4;
+                    if(spriteNum == 5) image = up5;
+                    if(spriteNum == 6) image = up6;
+                    if(spriteNum == 7) image = up7;
+                    if(spriteNum == 8) image = up8;
                     break;
                 case "down":
                 	if(spriteNum == 1) image = down1;
@@ -163,14 +163,14 @@ public class MON_Ghost extends Entity{
                     if(spriteNum == 8) image = right8;
                     break;
                 case "left":
-                	 if(spriteNum == 1) image = left1;
-                     if(spriteNum == 2) image = left2;
-                     if(spriteNum == 3) image = left3;
-                     if(spriteNum == 4) image = left4;
-                     if(spriteNum == 5) image = left5;
-                     if(spriteNum == 6) image = left6;
-                     if(spriteNum == 7) image = left7;
-                     if(spriteNum == 8) image = left8;
+                	if(spriteNum == 1) image = left1;
+                    if(spriteNum == 2) image = left2;
+                    if(spriteNum == 3) image = left3;
+                    if(spriteNum == 4) image = left4;
+                    if(spriteNum == 5) image = left5;
+                    if(spriteNum == 6) image = left6;
+                    if(spriteNum == 7) image = left7;
+                    if(spriteNum == 8) image = left8;
                     break;
             }
             // Làm mờ khi nhân sát thương
@@ -192,58 +192,57 @@ public class MON_Ghost extends Entity{
         	    
         	 switch(direction){
              case "up":
-             	 if(spriteNum == 1) image = up1;
-                  if(spriteNum == 2) image = up2;
-                  if(spriteNum == 3) image = up3;
-                  if(spriteNum == 4) image = up4;
-                  if(spriteNum == 5) image = up5;
-                  if(spriteNum == 6) image = up6;
-                  if(spriteNum == 7) image = up7;
-                  if(spriteNum == 8) image = up8;
-                 break;
+             	if(spriteNum == 1) image = up1;
+                if(spriteNum == 2) image = up2;
+                if(spriteNum == 3) image = up3;
+                if(spriteNum == 4) image = up4;
+                if(spriteNum == 5) image = up5;
+                if(spriteNum == 6) image = up6;
+                if(spriteNum == 7) image = up7;
+                if(spriteNum == 8) image = up8;
+                break;
              case "down":
              	if(spriteNum == 1) image = down1;
-                 if(spriteNum == 2) image = down2;
-                 if(spriteNum == 3) image = down3;
-                 if(spriteNum == 4) image = down4;
-                 if(spriteNum == 5) image = down5;
-                 if(spriteNum == 6) image = down6;
-                 if(spriteNum == 7) image = down7;
-                 if(spriteNum == 8) image = down8;
-                 break;    
+                if(spriteNum == 2) image = down2;
+                if(spriteNum == 3) image = down3;
+                if(spriteNum == 4) image = down4;
+                if(spriteNum == 5) image = down5;
+                if(spriteNum == 6) image = down6;
+                if(spriteNum == 7) image = down7;
+                if(spriteNum == 8) image = down8;
+                break;    
              case "right":
              	if(spriteNum == 1) image = right1;
-                 if(spriteNum == 2) image = right2;
-                 if(spriteNum == 3) image = right3;
-                 if(spriteNum == 4) image = right4;
-                 if(spriteNum == 5) image = right5;
-                 if(spriteNum == 6) image = right6;
-                 if(spriteNum == 7) image = right7;
-                 if(spriteNum == 8) image = right8;
-                 break;
+                if(spriteNum == 2) image = right2;
+                if(spriteNum == 3) image = right3;
+                if(spriteNum == 4) image = right4;
+                if(spriteNum == 5) image = right5;
+                if(spriteNum == 6) image = right6;
+                if(spriteNum == 7) image = right7;
+                if(spriteNum == 8) image = right8;
+                break;
              case "left":
-             	 if(spriteNum == 1) image = left1;
-                  if(spriteNum == 2) image = left2;
-                  if(spriteNum == 3) image = left3;
-                  if(spriteNum == 4) image = left4;
-                  if(spriteNum == 5) image = left5;
-                  if(spriteNum == 6) image = left6;
-                  if(spriteNum == 7) image = left7;
-                  if(spriteNum == 8) image = left8;
-                 break;
-         }
-        	 
-                // Làm mờ khi nhân sát thương
-                if(invincible == true){
-                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
-                }
+             	if(spriteNum == 1) image = left1;
+                if(spriteNum == 2) image = left2;
+                if(spriteNum == 3) image = left3;
+                if(spriteNum == 4) image = left4;
+                if(spriteNum == 5) image = left5;
+                if(spriteNum == 6) image = left6;
+                if(spriteNum == 7) image = left7;
+                if(spriteNum == 8) image = left8;
+                break;
+            } 
+            // Làm mờ khi nhân sát thương
+            if(invincible == true){
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+            }
 
-                if(dying == true){
-                    dyingAnimation(g2);
-                }
+            if(dying == true){
+                dyingAnimation(g2);
+            }
 
-                g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
-                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); 
+            g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)); 
         }
         
     }
