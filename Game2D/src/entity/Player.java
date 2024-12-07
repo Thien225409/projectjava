@@ -1,6 +1,5 @@
 package entity;
 
-import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -332,7 +331,7 @@ public class Player extends Entity {
     public void contactMonster(int i){
         if(i != 999){
             if(invincible == false){
-                life -= 1;
+                // life -= 1;
                 invincible = true;
             }
         }
@@ -463,12 +462,10 @@ public class Player extends Entity {
                 break;
     
         }
-        // Làm mờ khi nhân sát thương
+        
         if(invincible == true){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+            // TODO:Vẽ cái gì đó khi player bị nhận sát thương
         }
         g2.drawImage(image , x, y, null );
-        // Reset alpha
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 }

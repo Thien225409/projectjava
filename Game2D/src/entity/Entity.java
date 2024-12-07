@@ -71,7 +71,7 @@ public class Entity {
         if(this.type == 2 && contactPlayer == true){
             if(gp.player.invincible == false){
                 // We can give damage
-                gp.player.life -= 1;
+                //gp.player.life -= 1;
                 gp.player.invincible = true;
             }
 
@@ -154,7 +154,7 @@ public class Entity {
             }
 
             if(dying == true){
-                dyingAnimation(g2);
+                dyingAnimation(g2);//TODO: Khi quái chết thì tải animation die của quái
             }
 
             g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
@@ -168,7 +168,7 @@ public class Entity {
                 if(invincible == true){
                     g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
                 }
-                
+
                 if(dying == true){
                     dyingAnimation(g2);
                 }
