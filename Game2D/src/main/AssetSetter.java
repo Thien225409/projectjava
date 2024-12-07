@@ -91,6 +91,37 @@ public class AssetSetter {
         gp.monster[14] = new MON_Skeleton(gp);
         gp.monster[14].worldX = gp.tileSize * 67;
         gp.monster[14].worldY = gp.tileSize * 39;
+
+        gp.monster[15] = new MON_Ghost(gp);
+        gp.monster[15].worldX = gp.tileSize * 8;
+        gp.monster[15].worldY = gp.tileSize * 8;
         
+        gp.monster[16] = new MON_Ghost(gp);
+        gp.monster[16].worldX = gp.tileSize * 23;
+        gp.monster[16].worldY = gp.tileSize * 8;
+        
+        gp.monster[17] = new MON_Ghost(gp);
+        gp.monster[17].worldX = gp.tileSize * 38;
+        gp.monster[17].worldY = gp.tileSize * 8;
+        
+        gp.monster[18] = new MON_Ghost(gp);
+        gp.monster[18].worldX = gp.tileSize * 13;
+        gp.monster[18].worldY = gp.tileSize * 23;
+        
+        gp.monster[19] = new MON_Ghost(gp);
+        gp.monster[19].worldX = gp.tileSize * 28;
+        gp.monster[19].worldY = gp.tileSize * 23;
+        
+        gp.monster[20] = new MON_Ghost(gp);
+        gp.monster[20].worldX = gp.tileSize * 18;
+        gp.monster[20].worldY = gp.tileSize * 38;
+        
+        gp.monster[21] = new MON_Ghost(gp);
+        gp.monster[21].worldX = gp.tileSize * 33;
+        gp.monster[21].worldY = gp.tileSize * 38;
+        
+        gp.monster[22] = new MON_Ghost(gp);
+        gp.monster[22].worldX = gp.tileSize * 48;
+        gp.monster[22].worldY = gp.tileSize * 38;
     }
 }
