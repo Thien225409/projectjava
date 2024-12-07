@@ -106,25 +106,22 @@ public class Entity {
 
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
-        
         // Stop moving the camere at the edge
-        int x = screenX;
-        int y = screenY;
 
         if(gp.player.screenX > gp.player.worldX){
-            x = worldX;
+            screenX = worldX;
         }
         if(gp.player.screenY > gp.player.worldY){
-            y = worldY;
+            screenY = worldY;
         }
         int rightOffset = gp.screenWidth - gp.player.screenX;
         if(rightOffset > gp.worldWidth - gp.player.worldX){
-            x = gp.screenWidth - (gp.worldWidth - worldX);
+            screenX = gp.screenWidth - (gp.worldWidth - worldX);
         }
 
         int bottomOffset = gp.screenHeight - gp.player.screenY;
         if(bottomOffset > gp.worldHeight - gp.player.worldY){
-            y = gp.screenHeight - (gp.worldHeight - worldY);
+            screenY = gp.screenHeight - (gp.worldHeight - worldY);
         }
 
         if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
@@ -132,17 +129,17 @@ public class Entity {
             worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
             worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){
             
-                subdraw(g2, screenX, screenY, x, y);
+                subdraw(g2, screenX, screenY);
         }
         else if(gp.player.screenX > gp.player.worldX || gp.player.screenY > gp.player.worldY ||
             rightOffset > gp.worldWidth - gp.player.worldX ||
             bottomOffset > gp.worldHeight - gp.player.worldY) {
                 // WHEN STOP CAMERA
-                subdraw(g2, screenX, screenY, x, y);
+                subdraw(g2, screenX, screenY);
         }
     }
     // SUBDRAW
-    public void subdraw(Graphics2D g2, int screenX, int screenY, int x, int y){
+    public void subdraw(Graphics2D g2, int screenX, int screenY){
 
         BufferedImage image = null;
         switch(direction){
@@ -181,7 +178,7 @@ public class Entity {
             dyingAnimation(g2);//TODO: Khi quái chết thì tải animation die của quái
         }
 
-        g2.drawImage(image, x , y , gp.tileSize , gp.tileSize , null);
+        g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         
     }
