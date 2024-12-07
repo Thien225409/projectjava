@@ -6,7 +6,7 @@ import entity.Entity;
 import main.GamePanel;
 
 public class MON_Skeleton extends Entity{
-
+// TEST
     GamePanel gp;
     public MON_Skeleton(GamePanel gp){
         super(gp);
