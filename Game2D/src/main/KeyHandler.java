@@ -60,6 +60,7 @@ public class KeyHandler implements KeyListener {
                     gp.ui.commandNum = 0;
                 }
             }
+
             if(code == KeyEvent.VK_ENTER){
                 if(gp.ui.commandNum == 0){
                     gp.gameState = gp.playState;
@@ -79,7 +80,7 @@ public class KeyHandler implements KeyListener {
         else if(gp.ui.titleScreenState == 1){
             // TODO: Viết code cho xử lí phím tắt với CONTROL GUIDE
             if(code == KeyEvent.VK_ENTER){
-                gp.ui.titleScreenState = 0;
+                gp.ui.titleScreenState = 0;// BACK
                 gp.ui.commandNum = 0;
             }
         }
@@ -134,7 +135,7 @@ public class KeyHandler implements KeyListener {
             if(gp.ui.commandNum == 1){
                 // BACK
                 gp.gameState = gp.titleState;
-                gp.ui.titleScreenState = 1;
+                gp.ui.titleScreenState = 0;
                 gp.stopMusic();
                 gp.ui.commandNum = 0;
             }
