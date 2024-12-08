@@ -38,6 +38,8 @@ public class MON_Skeleton extends Entity{
         right2 = setup("/monster/skeleton_right2", gp.tileSize, gp.tileSize);
         left1 = setup("/monster/skeleton_left1", gp.tileSize, gp.tileSize);
         left2 = setup("/monster/skeleton_left2", gp.tileSize, gp.tileSize);
+
+        die = setup("/monster/skeleton_died",gp.tileSize,gp.tileSize);
     }
 
     public void setAction(){

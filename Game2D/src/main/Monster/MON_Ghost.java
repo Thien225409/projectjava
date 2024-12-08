@@ -57,6 +57,8 @@ public class MON_Ghost extends Entity{
         up6 = setup("/monster/ghost_L6", gp.tileSize, gp.tileSize);
         up7 = setup("/monster/ghost_L7", gp.tileSize, gp.tileSize);
         up8 = setup("/monster/ghost_L8", gp.tileSize, gp.tileSize);
+
+        die = setup("/monster/skeleton_died",gp.tileSize,gp.tileSize);
     }
     
     public void update(){
@@ -227,11 +229,29 @@ public class MON_Ghost extends Entity{
         }
 
         if(dying == true){
-            dyingAnimation(g2);
+            //TODO: Khi quái chết thì tải animation die của quái
+            dyingCounter ++;
+
+            int jump = 5;
+            if(dyingCounter <= jump) changeAlpha(g2, 1f);
+            if(dyingCounter > jump && dyingCounter <= jump*2) changeAlpha(g2, 0f);
+            if(dyingCounter > jump*2 && dyingCounter <= jump*3) changeAlpha(g2, 1f);
+            if(dyingCounter > jump*3 && dyingCounter <= jump*4) changeAlpha(g2, 0f);
+            if(dyingCounter > jump*4 && dyingCounter <= jump*5) changeAlpha(g2, 1f);
+            if(dyingCounter > jump*5 && dyingCounter <= jump*6) changeAlpha(g2, 0f);
+            if(dyingCounter > jump*6 && dyingCounter <= jump*7) changeAlpha(g2, 1f);
+            if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f);
+            if(dyingCounter > jump*8 && dyingCounter <= jump*31) {
+                changeAlpha(g2, 1f);
+                image = die;
+            }
+            if(dyingCounter > jump*31){
+                dying = false;
+                alive = false;
+            }
         }
 
         g2.drawImage(image, screenX , screenY, gp.tileSize , gp.tileSize , null);
-        changeAlpha(g2, 1f);
     }
 
     public void setAction(){
