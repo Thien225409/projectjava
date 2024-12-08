@@ -21,6 +21,7 @@ public class MON_Ghost extends Entity{
 
         attack = 2;
         defense = 0;
+        exp = 1;
         
         life = maxLife;
         getImage();

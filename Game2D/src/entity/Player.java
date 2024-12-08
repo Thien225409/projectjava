@@ -58,9 +58,9 @@ public class Player extends Entity {
         
         attackValue = 1;
         defenseValue = 1;
-        
-        attack = strength * attackValue;
-        defense = dexterity * defenseValue;
+
+        attack = strength;
+        defense = dexterity;
     }
 
     public void getPlayerImage(){
@@ -351,7 +351,7 @@ public class Player extends Entity {
     }
     public void contactMonster(int i){
         if(i != 999){
-            if(invincible == false){
+            if(invincible == false && gp.monster[i].dying == false ){
                 int damage = gp.monster[i].attack - defense;
                 if(damage < 0) damage = 0;
                 gp.player.life -= damage;
@@ -369,17 +369,34 @@ public class Player extends Entity {
 
                 if(damage < 0) damage = 0;
                 gp.monster[i].life -= damage;
+                gp.ui.addMessage(damage + " damage!");
+
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReaction();
 
                 if(gp.monster[i].life <= 0){
                     gp.monster[i].dying = true;
+                    gp.ui.addMessage("Killed the " + gp.monster[i].name + "!");
+                    gp.ui.addMessage("Exp + " + gp.monster[i].exp);
+                    exp += gp.monster[i].exp;
+                    checkLevelUp();
                 }
-
             }
         }
     }
+    public void checkLevelUp(){
 
+        if(exp >= nextLevelExp){
+            level ++;
+            nextLevelExp = nextLevelExp * 2;
+            maxLife += 2;
+            life += 2;
+            attack ++;
+            defense ++;
+            gp.ui.addMessage("Level Up!");
+            gp.ui.addMessage("Level " + level);
+        }
+    }
     public void draw(Graphics2D g2){
 
         BufferedImage image = null;

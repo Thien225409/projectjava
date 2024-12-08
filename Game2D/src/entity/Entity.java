@@ -224,7 +224,6 @@ public class Entity {
                 image = die;
             }
             if(dyingCounter > jump*31){
-                dying = false;
                 alive = false;
             }
         }

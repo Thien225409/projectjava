@@ -20,6 +20,7 @@ public class MON_Skeleton extends Entity{
 
         attack = 2;
         defense = 0;
+        exp = 1;
         
         solidArea.x = 3;
         solidArea.y = 18;
