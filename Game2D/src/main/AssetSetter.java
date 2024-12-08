@@ -3,6 +3,7 @@ package main;
 import entity.NPC_OldMan;
 import main.Monster.MON_Ghost;
 import main.Monster.MON_Skeleton;
+import main.Monster.MON_Slime;
 import object.OBJ_Door;
 
 public class AssetSetter {
@@ -124,5 +125,54 @@ public class AssetSetter {
         gp.monster[22] = new MON_Ghost(gp);
         gp.monster[22].worldX = gp.tileSize * 48;
         gp.monster[22].worldY = gp.tileSize * 38;
+
+        gp.monster[23] = new MON_Slime(gp);
+        gp.monster[23].worldX = gp.tileSize * 4;
+        gp.monster[23].worldY = gp.tileSize * 15;
+        
+        gp.monster[24] = new MON_Slime(gp);
+        gp.monster[24].worldX = gp.tileSize * 15;
+        gp.monster[24].worldY = gp.tileSize * 15;
+        
+        gp.monster[25] = new MON_Slime(gp);
+        gp.monster[25].worldX = gp.tileSize * 25;
+        gp.monster[25].worldY = gp.tileSize * 15;
+        
+        gp.monster[26] = new MON_Slime(gp);
+        gp.monster[26].worldX = gp.tileSize * 48;
+        gp.monster[26].worldY = gp.tileSize * 20;
+        
+        gp.monster[27] = new MON_Slime(gp);
+        gp.monster[27].worldX = gp.tileSize * 50;
+        gp.monster[27].worldY = gp.tileSize * 25;
+        
+        gp.monster[28] = new MON_Slime(gp);
+        gp.monster[28].worldX = gp.tileSize * 50;
+        gp.monster[28].worldY = gp.tileSize * 35;
+        
+        gp.monster[29] = new MON_Slime(gp);
+        gp.monster[29].worldX = gp.tileSize * 10;
+        gp.monster[29].worldY = gp.tileSize * 48;
+        
+        gp.monster[30] = new MON_Slime(gp);
+        gp.monster[30].worldX = gp.tileSize * 4;
+        gp.monster[30].worldY = gp.tileSize * 43;
+        
+        gp.monster[31] = new MON_Slime(gp);
+        gp.monster[31].worldX = gp.tileSize * 25;
+        gp.monster[31].worldY = gp.tileSize * 48;
+        
+        gp.monster[32] = new MON_Slime(gp);
+        gp.monster[32].worldX = gp.tileSize * 22;
+        gp.monster[32].worldY = gp.tileSize * 36;
+        
+        gp.monster[33] = new MON_Slime(gp);
+        gp.monster[33].worldX = gp.tileSize * 66;
+        gp.monster[33].worldY = gp.tileSize * 39;
+        
+        gp.monster[34] = new MON_Slime(gp);
+        gp.monster[34].worldX = gp.tileSize * 35;
+        gp.monster[34].worldY = gp.tileSize * 15;
+        
     }
 }
