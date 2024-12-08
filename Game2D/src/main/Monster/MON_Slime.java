@@ -15,7 +15,7 @@ public class MON_Slime extends Entity{
         type =2;
         name = "Smile";
         speed = 1;
-        maxLife = 1;
+        maxLife = 2;
         life = maxLife;
         
         solidArea.x = 4;

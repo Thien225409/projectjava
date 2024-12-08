@@ -39,6 +39,7 @@ public class Player extends Entity {
         getPlayerImage();
         getPlayerAttackImage();
     }
+    
     public void setDefaultValues(){
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
@@ -46,9 +47,19 @@ public class Player extends Entity {
         direction = "down";
 
         // PLAYER STATUS
+        level = 1;
         maxLife = 6;
         life = maxLife;// 1 life = 1/2 heart
+        strength = 1; // Càng nhiều sức mạnh càng nhiều sát thương
+        dexterity = 1; // Càng ít khéo léo thì càng nhận nhiều sát thương
+        exp = 0;
+        nextLevelExp = 5;
+        coin = 0;
+
+        attack = strength * attackValue;
+        defense = dexterity * defenseValue;
     }
+
     public void getPlayerImage(){
         up1 = setup("/player/walk_right1", gp.tileSize, gp.tileSize);
         up2 = setup("/player/walk_right2", gp.tileSize, gp.tileSize);

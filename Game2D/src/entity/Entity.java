@@ -55,6 +55,21 @@ public class Entity {
     public int speed;
     public int maxLife;
     public int life;
+    public int level;// Cấp độ
+    public int strength;// Sức mạnh
+    public int dexterity;// Khéo léo 
+    public int attack;// Tấn công
+    public int defense;// Phòng thủ
+    public int exp;// Kinh nghiệm
+    public int nextLevelExp;
+    public int coin;
+    public Entity currentWeapon;// Vũ khí hiện tại
+    public Entity currentShield;// Lá chắn hiện tại
+
+    // ITEM ATTRIBUTES
+    public int attackValue;
+    public int defenseValue;
+
 
     public Entity(GamePanel gp){
         this.gp = gp;
@@ -210,7 +225,7 @@ public class Entity {
         if(dyingCounter > jump*5 && dyingCounter <= jump*6) changeAlpha(g2, 1f);
         if(dyingCounter > jump*6 && dyingCounter <= jump*7) changeAlpha(g2, 0f);
         if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 1f);
-        if(dyingCounter > jump*8){
+        if(dyingCounter > jump*8    ){
             dying = false;
             alive = false;
         }
