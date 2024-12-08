@@ -58,7 +58,6 @@ public class MON_Ghost extends Entity{
         up7 = setup("/monster/ghost_L7", gp.tileSize, gp.tileSize);
         up8 = setup("/monster/ghost_L8", gp.tileSize, gp.tileSize);
 
-        die = setup("/monster/skeleton_died",gp.tileSize,gp.tileSize);
     }
     
     public void update(){
@@ -117,45 +116,7 @@ public class MON_Ghost extends Entity{
             }
         }
     }
-    public void draw(Graphics2D g2){
-
-        int screenX = worldX - gp.player.worldX + gp.player.screenX;
-        int screenY = worldY - gp.player.worldY + gp.player.screenY;
-        
-        // Stop moving the camere at the edge
-        if(gp.player.screenX > gp.player.worldX){
-            screenX = worldX;
-        }
-        if(gp.player.screenY > gp.player.worldY){
-            screenY = worldY;
-        }
-        int rightOffset = gp.screenWidth - gp.player.screenX;
-        if(rightOffset > gp.worldWidth - gp.player.worldX){
-            screenX = gp.screenWidth - (gp.worldWidth - worldX);
-        }
-
-        int bottomOffset = gp.screenHeight - gp.player.screenY;
-        if(bottomOffset > gp.worldHeight - gp.player.worldY){
-            screenY = gp.screenHeight - (gp.worldHeight - worldY);
-        }
-
-        // START CAMERA
-        if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-            worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-            worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-            worldY - gp.tileSize < gp.player.worldY + gp.player.screenY){
-
-            subdraw(g2, screenX, screenY);
-        }
-        // STOP CAMERA
-        else if(gp.player.screenX > gp.player.worldX || gp.player.screenY > gp.player.worldY ||
-            rightOffset > gp.worldWidth - gp.player.worldX ||
-            bottomOffset > gp.worldHeight - gp.player.worldY) {
-        	    
-        	subdraw(g2, screenX, screenY);
-        }
-    }
-
+    
     public void subdraw(Graphics2D g2, int screenX, int screenY){
 
         BufferedImage image = null;
@@ -225,7 +186,7 @@ public class MON_Ghost extends Entity{
         if(invincible == true){
             hpBarOn = true;
             hpBarCounter = 0;
-            changeAlpha(g2, 0.4f);;
+            changeAlpha(g2, 0.4f);
         }
 
         if(dying == true){
@@ -241,17 +202,14 @@ public class MON_Ghost extends Entity{
             if(dyingCounter > jump*5 && dyingCounter <= jump*6) changeAlpha(g2, 0f);
             if(dyingCounter > jump*6 && dyingCounter <= jump*7) changeAlpha(g2, 1f);
             if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f);
-            if(dyingCounter > jump*8 && dyingCounter <= jump*31) {
-                changeAlpha(g2, 1f);
-                image = die;
-            }
-            if(dyingCounter > jump*31){
+            if(dyingCounter > jump*8){
                 dying = false;
                 alive = false;
             }
         }
 
         g2.drawImage(image, screenX , screenY, gp.tileSize , gp.tileSize , null);
+        changeAlpha(g2, 1f);
     }
 
     public void setAction(){
