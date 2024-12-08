@@ -55,7 +55,7 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
-
+        
         attack = strength * attackValue;
         defense = dexterity * defenseValue;
     }
@@ -337,7 +337,6 @@ public class Player extends Entity {
            // TODO: Xử lí va chạm với vật thể
         }
     }
-
     public void interactNPC(int i){
         if(gp.keyH.enterPressed == true){
             if(i != 999){
@@ -347,23 +346,27 @@ public class Player extends Entity {
             }
         }
     }
-
     public void contactMonster(int i){
         if(i != 999){
             if(invincible == false){
-                life -= 1;
+                int damage = gp.monster[i].attack - defense;
+                if(damage < 0) damage = 0;
+                gp.monster[i].life -= damage;
+                gp.player.life -= damage;
                 invincible = true;
             }
         }
     }
-
     public void damageMonster(int i){
 
         if(i != 999){
             
             if(gp.monster[i].invincible == false){
 
-                gp.monster[i].life -= 1;
+                int damage = attack - gp.monster[i].defense;
+
+                if(damage < 0) damage = 0;
+                gp.monster[i].life -= damage;
                 gp.monster[i].invincible = true;
                 gp.monster[i].damageReaction();
 

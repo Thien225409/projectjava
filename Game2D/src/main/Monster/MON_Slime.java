@@ -12,11 +12,14 @@ public class MON_Slime extends Entity{
         super(gp);
         this.gp = gp;
         
-        type =2;
+        type = 2;
         name = "Smile";
         speed = 1;
         maxLife = 2;
         life = maxLife;
+        
+        attack = 5;
+        defense = 0;
         
         solidArea.x = 4;
         solidArea.y = 11;

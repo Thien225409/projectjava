@@ -65,12 +65,10 @@ public class Entity {
     public int exp;// Kinh nghiệm
     public int nextLevelExp;
     public int coin;
-    public Entity currentWeapon;// Vũ khí hiện tại
-    public Entity currentShield;// Lá chắn hiện tại
 
     // ITEM ATTRIBUTES
-    public int attackValue;
-    public int defenseValue;
+    public int attackValue = 1;
+    public int defenseValue = 1;
 
 
     public Entity(GamePanel gp){
@@ -92,7 +90,9 @@ public class Entity {
         if(this.type == 2 && contactPlayer == true){
             if(gp.player.invincible == false){
                 // We can give damage
-                gp.player.life -= 1;
+                int damage = attack - gp.player.defense;
+                if(damage < 0) damage = 0;
+                life -= damage;
                 gp.player.invincible = true;
             }
 
@@ -229,7 +229,7 @@ public class Entity {
         }
 
         g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
-        
+        changeAlpha(g2, 1f);
     }
     
 
