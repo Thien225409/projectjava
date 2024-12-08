@@ -217,9 +217,10 @@ public class Entity {
             if(dyingCounter > jump*4 && dyingCounter <= jump*5) changeAlpha(g2, 1f);
             if(dyingCounter > jump*5 && dyingCounter <= jump*6) changeAlpha(g2, 0f);
             if(dyingCounter > jump*6 && dyingCounter <= jump*7) changeAlpha(g2, 1f);
-            if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f);
-            if(dyingCounter > jump*8 && dyingCounter <= jump*31) {
+            if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f); 
+            if(dyingCounter > jump*8 && dyingCounter <= jump*31) {        		 
                 changeAlpha(g2, 1f);
+                hpBarOn = false;
                 image = die;
             }
             if(dyingCounter > jump*31){
@@ -227,7 +228,6 @@ public class Entity {
                 alive = false;
             }
         }
-
         g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
         changeAlpha(g2, 1f);
     }
