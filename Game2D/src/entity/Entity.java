@@ -205,25 +205,8 @@ public class Entity {
             changeAlpha(g2, 0.4f);
         }
 
-        if(dying == true){
+       if(dying == true){
             //TODO: Khi quái chết thì tải animation die của quái
-            
-            if(die == null) {
-            	dyingCounter ++;
-            	 int jump = 5;
-                 if(dyingCounter <= jump) changeAlpha(g2, 1f);
-                 if(dyingCounter > jump && dyingCounter <= jump*2) changeAlpha(g2, 0f);
-                 if(dyingCounter > jump*2 && dyingCounter <= jump*3) changeAlpha(g2, 1f);
-                 if(dyingCounter > jump*3 && dyingCounter <= jump*4) changeAlpha(g2, 0f);
-                 if(dyingCounter > jump*4 && dyingCounter <= jump*5) changeAlpha(g2, 1f);
-                 if(dyingCounter > jump*5 && dyingCounter <= jump*6) changeAlpha(g2, 0f);
-                 if(dyingCounter > jump*6 && dyingCounter <= jump*7) changeAlpha(g2, 1f);
-                 if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f);     
-                 if(dyingCounter > jump*8){
-                              dying = false;
-                              alive = false;
-                      }
-            }else {
             	dyingCounter ++;
                  int jump = 5;
                  if(dyingCounter <= jump) changeAlpha(g2, 1f);
@@ -233,17 +216,25 @@ public class Entity {
                  if(dyingCounter > jump*4 && dyingCounter <= jump*5) changeAlpha(g2, 1f);
                  if(dyingCounter > jump*5 && dyingCounter <= jump*6) changeAlpha(g2, 0f);
                  if(dyingCounter > jump*6 && dyingCounter <= jump*7) changeAlpha(g2, 1f);
-                 if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f);     
-                 if(dyingCounter > jump*8 && dyingCounter <= jump*31) {               	 
-                	 changeAlpha(g2, 1f);
-                	 hpBarOn = false;
-                     image = die;
-                  }
-                  if(dyingCounter > jump*31){
-                          dying = false;
-                          alive = false;
-                  }
-            }
+                 if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f); 
+                 if(die != null) {
+                	 if(dyingCounter > jump*8 && dyingCounter <= jump*31) {        		 
+                	     changeAlpha(g2, 1f);
+                	     hpBarOn = false;
+                         image = die;
+                     }
+                	 if(dyingCounter > jump*31){
+                         dying = false;
+                         alive = false;
+                     }
+                 }else {
+                	 if(dyingCounter > jump*8){
+                         dying = false;
+                         alive = false;
+                     }
+                 }
+                  
+            
         }
         g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
         changeAlpha(g2, 1f);
