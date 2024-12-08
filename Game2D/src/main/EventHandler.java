@@ -93,6 +93,7 @@ public class EventHandler {
 
         if(gp.keyH.enterPressed == true){
             gp.gameState = gameState;
+            gp.player.attackCanceled = true;
             gp.ui.currentDialogue = "";// TODO: Viết code Khi hồi máu thì hiển thị dialogue
             if(gp.player.life < gp.player.maxLife){
                 gp.player.life += 1;
