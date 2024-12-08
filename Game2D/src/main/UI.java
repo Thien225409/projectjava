@@ -241,10 +241,20 @@ public class UI {
             // TODO: Viết code cho các hướng dẫn phím tắt của game
             String text = "Control Guide";
             int x = getXforCenterText(text);
-            int y = gp.tileSize*3;
+            int y = gp.tileSize*2;
             g2.drawString(text, x, y);
 
             text = "Di chuyển: W A S D";
+            x = gp.tileSize;
+            y += gp.tileSize*2;
+            g2.drawString(text, x, y);
+
+            text = "Tấn công: Enter";
+            x = gp.tileSize;
+            y += gp.tileSize;
+            g2.drawString(text, x, y);
+
+            text = "Hiển thị thông số: X";
             x = gp.tileSize;
             y += gp.tileSize;
             g2.drawString(text, x, y);

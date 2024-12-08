@@ -67,8 +67,8 @@ public class Entity {
     public int coin;
 
     // ITEM ATTRIBUTES
-    public int attackValue = 1;
-    public int defenseValue = 1;
+    public int attackValue;
+    public int defenseValue;
 
 
     public Entity(GamePanel gp){

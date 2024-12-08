@@ -18,7 +18,8 @@ public class MON_Ghost extends Entity{
         name = "Ghost";
         speed = 1;
         maxLife = 2;
-        attack = 5;
+
+        attack = 2;
         defense = 0;
         
         life = maxLife;

@@ -18,7 +18,7 @@ public class MON_Skeleton extends Entity{
         maxLife = 4;
         life = maxLife;
 
-        attack = 5;
+        attack = 2;
         defense = 0;
         
         solidArea.x = 3;

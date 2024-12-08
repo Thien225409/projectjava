@@ -56,6 +56,9 @@ public class Player extends Entity {
         nextLevelExp = 5;
         coin = 0;
         
+        attackValue = 1;
+        defenseValue = 1;
+        
         attack = strength * attackValue;
         defense = dexterity * defenseValue;
     }
@@ -351,7 +354,6 @@ public class Player extends Entity {
             if(invincible == false){
                 int damage = gp.monster[i].attack - defense;
                 if(damage < 0) damage = 0;
-                gp.monster[i].life -= damage;
                 gp.player.life -= damage;
                 invincible = true;
             }
