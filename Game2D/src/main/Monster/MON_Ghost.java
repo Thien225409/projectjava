@@ -63,7 +63,6 @@ public class MON_Ghost extends Entity{
         up7 = setup("/monster/ghost_L7", gp.tileSize, gp.tileSize);
         up8 = setup("/monster/ghost_L8", gp.tileSize, gp.tileSize);
 
-        die = setup("/monster/skeleton_died",gp.tileSize,gp.tileSize);
     }
     
     public void update(){
@@ -122,7 +121,7 @@ public class MON_Ghost extends Entity{
             }
         }
     }
-
+    
     public void subdraw(Graphics2D g2, int screenX, int screenY){
 
         BufferedImage image = null;
@@ -191,7 +190,7 @@ public class MON_Ghost extends Entity{
         if(invincible == true){
             hpBarOn = true;
             hpBarCounter = 0;
-            changeAlpha(g2, 0.4f);;
+            changeAlpha(g2, 0.4f);
         }
 
         if(dying == true){
@@ -207,11 +206,7 @@ public class MON_Ghost extends Entity{
             if(dyingCounter > jump*5 && dyingCounter <= jump*6) changeAlpha(g2, 0f);
             if(dyingCounter > jump*6 && dyingCounter <= jump*7) changeAlpha(g2, 1f);
             if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f);
-            if(dyingCounter > jump*8 && dyingCounter <= jump*31) {
-                changeAlpha(g2, 1f);
-                image = die;
-            }
-            if(dyingCounter > jump*31){
+            if(dyingCounter > jump*8){
                 dying = false;
                 alive = false;
             }
