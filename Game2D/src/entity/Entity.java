@@ -18,7 +18,7 @@ public class Entity {
     right1 , right2 ,right3 ,right4,right5,right6,right7,right8,
     left1 , left2 ,left3 ,left4,left5,left6,left7,left8;
 
-    public BufferedImage die;
+    public BufferedImage die = null;
 
     public BufferedImage attackUp1, attackUp2, attackUp3, attackUp4, attackUp5,attackUp6,
     attackDown1, attackDown2, attackDown3, attackDown4, attackDown5,attackDown6,
@@ -159,7 +159,7 @@ public class Entity {
         }
     }
     // SUBDRAW
-    public void subdraw(Graphics2D g2, int screenX, int screenY){
+ public void subdraw(Graphics2D g2, int screenX, int screenY){
 
         BufferedImage image = null;
         switch(direction){
@@ -207,29 +207,46 @@ public class Entity {
 
         if(dying == true){
             //TODO: Khi quái chết thì tải animation die của quái
-            dyingCounter ++;
-
-            int jump = 5;
-            if(dyingCounter <= jump) changeAlpha(g2, 1f);
-            if(dyingCounter > jump && dyingCounter <= jump*2) changeAlpha(g2, 0f);
-            if(dyingCounter > jump*2 && dyingCounter <= jump*3) changeAlpha(g2, 1f);
-            if(dyingCounter > jump*3 && dyingCounter <= jump*4) changeAlpha(g2, 0f);
-            if(dyingCounter > jump*4 && dyingCounter <= jump*5) changeAlpha(g2, 1f);
-            if(dyingCounter > jump*5 && dyingCounter <= jump*6) changeAlpha(g2, 0f);
-            if(dyingCounter > jump*6 && dyingCounter <= jump*7) changeAlpha(g2, 1f);
-            if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f);
-            if(dyingCounter > jump*8 && dyingCounter <= jump*31) {
-                changeAlpha(g2, 1f);
-                image = die;
-            }
-            if(dyingCounter > jump*31){
-                dying = false;
-                alive = false;
+            
+            if(die == null) {
+            	dyingCounter ++;
+            	 int jump = 5;
+                 if(dyingCounter <= jump) changeAlpha(g2, 1f);
+                 if(dyingCounter > jump && dyingCounter <= jump*2) changeAlpha(g2, 0f);
+                 if(dyingCounter > jump*2 && dyingCounter <= jump*3) changeAlpha(g2, 1f);
+                 if(dyingCounter > jump*3 && dyingCounter <= jump*4) changeAlpha(g2, 0f);
+                 if(dyingCounter > jump*4 && dyingCounter <= jump*5) changeAlpha(g2, 1f);
+                 if(dyingCounter > jump*5 && dyingCounter <= jump*6) changeAlpha(g2, 0f);
+                 if(dyingCounter > jump*6 && dyingCounter <= jump*7) changeAlpha(g2, 1f);
+                 if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f);     
+                 if(dyingCounter > jump*8){
+                              dying = false;
+                              alive = false;
+                      }
+            }else {
+            	dyingCounter ++;
+                 int jump = 5;
+                 if(dyingCounter <= jump) changeAlpha(g2, 1f);
+                 if(dyingCounter > jump && dyingCounter <= jump*2) changeAlpha(g2, 0f);
+                 if(dyingCounter > jump*2 && dyingCounter <= jump*3) changeAlpha(g2, 1f);
+                 if(dyingCounter > jump*3 && dyingCounter <= jump*4) changeAlpha(g2, 0f);
+                 if(dyingCounter > jump*4 && dyingCounter <= jump*5) changeAlpha(g2, 1f);
+                 if(dyingCounter > jump*5 && dyingCounter <= jump*6) changeAlpha(g2, 0f);
+                 if(dyingCounter > jump*6 && dyingCounter <= jump*7) changeAlpha(g2, 1f);
+                 if(dyingCounter > jump*7 && dyingCounter <= jump*8) changeAlpha(g2, 0f);     
+                 if(dyingCounter > jump*8 && dyingCounter <= jump*31) {               	 
+                	 changeAlpha(g2, 1f);
+                	 hpBarOn = false;
+                     image = die;
+                  }
+                  if(dyingCounter > jump*31){
+                          dying = false;
+                          alive = false;
+                  }
             }
         }
-
         g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
-        
+        changeAlpha(g2, 1f);
     }
     
 
