@@ -3,8 +3,14 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_EnergyDrink;
+import object.OBJ_HP;
+import object.OBJ_HP_half;
+import object.OBJ_Key;
 
 public class Player extends Entity {
 
@@ -15,6 +21,8 @@ public class Player extends Entity {
     // public int hasKey = 0;
     public int standCounter = 0;
     public boolean attackCanceled = false;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 10;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -38,6 +46,7 @@ public class Player extends Entity {
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
+        setItems();
     }
     
     public void setDefaultValues(){
@@ -55,12 +64,19 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
-        
         attackValue = 1;
         defenseValue = 1;
-
         attack = strength;
         defense = dexterity;
+    }
+    public void setItems(){
+
+        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_HP(gp));
+        inventory.add(new OBJ_HP_half(gp));
+        inventory.add(new OBJ_EnergyDrink(gp));
+        
+
     }
 
     public void getPlayerImage(){

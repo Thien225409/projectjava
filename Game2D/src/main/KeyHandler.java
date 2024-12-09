@@ -151,7 +151,37 @@ public class KeyHandler implements KeyListener {
             gp.gameState = gp.playState;
         }
     }
-    public void characterState(int code){}
+    public void characterState(int code){
+        if(code == KeyEvent.VK_X){
+            gp.gameState = gp.playState;
+        }
+        if(code == KeyEvent.VK_W){
+            if(gp.ui.slotRow != 0){
+                gp.ui.slotRow--;
+            }
+            
+        }
+        if(code == KeyEvent.VK_A){
+            if(gp.ui.slotCol != 0){
+                gp.ui.slotCol--;
+            }
+        }
+        if(code == KeyEvent.VK_S){
+            if(gp.ui.slotRow < 3){
+                gp.ui.slotRow++;
+            }
+        }
+        if(code == KeyEvent.VK_D){
+            gp.ui.slotCol++;
+            if(gp.ui.slotCol > 4){
+                gp.ui.slotCol = 0;
+                if(gp.ui.slotRow < 3){
+                    gp.ui.slotRow++;
+                }
+            }
+        }
+
+    }
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
@@ -167,9 +197,6 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_D){
             rightPressed = false;
-        }
-        if(code == KeyEvent.VK_X){
-            gp.gameState = gp.playState;
         }
     }
 

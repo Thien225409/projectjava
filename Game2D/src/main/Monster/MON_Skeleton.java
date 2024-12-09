@@ -4,6 +4,7 @@ import java.util.Random;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Bow;
 
 public class MON_Skeleton extends Entity{
 

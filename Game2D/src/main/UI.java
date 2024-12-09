@@ -21,7 +21,6 @@ public class UI {
     // BufferedImage keyImage;
     BufferedImage heart_full, heart_half, heart_blank;
     public boolean messageOn = false;
-
     ArrayList<String> message = new ArrayList<>();
     ArrayList<Integer> messageCounter = new ArrayList<>();
     public boolean gameFinished = false;
@@ -29,8 +28,8 @@ public class UI {
     public int commandNum = 0;
     public int titleScreenState = 0; // 0: the first screen, 1: the second screen 
 
-    // public double playTime;
-    // DecimalFormat dFormat = new DecimalFormat("#0.00");
+    public int slotCol = 0;
+    public int slotRow = 0;
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -489,13 +488,43 @@ public class UI {
     }
     public void drawInventory(){
 
+        // FRAME
         int frameX = gp.tileSize*9;
         int frameY = gp.tileSize;
         int frameHeight = gp.tileSize*5;
         int frameWidth = gp.tileSize*6;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
-        
+        // SLOT
+        final int slotXstart = frameX + 20;
+        final int slotYstart = frameY + 20;
+        int slotX = slotXstart;
+        int slotY = slotYstart;
+        int slotSize = gp.tileSize+3;
+
+        // DRAW PLAYER'S ITEMS
+        for(int i = 0; i < gp.player.inventory.size(); i++){
+
+            g2.drawImage(gp.player.inventory.get(i).down1, slotX,slotY,null);
+            slotX += slotSize;
+
+            if(i == 4 || i == 9 || i == 14){
+                slotX = slotXstart;
+                slotY += slotSize;
+            }
+        }
+
+
+        // CURSOR
+        int cursorX = slotXstart + (slotSize* slotCol);
+        int cursorY = slotYstart + (slotSize* slotRow);
+        int cursorWidth = gp.tileSize;
+        int cursorHeight = gp.tileSize;
+        // DRAW CURSOR
+        g2.setColor(Color.white);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+
     }
     public void drawSubWindow(int x, int y, int width, int height){
 
