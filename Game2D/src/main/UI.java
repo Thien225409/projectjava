@@ -143,6 +143,7 @@ public class UI {
         // CHARACTER STATE
         if(gp.gameState == gp.characterState){
             drawCharacterScreen();
+            drawInventory();
         }
     }
     public void drawMessage(){
@@ -485,6 +486,16 @@ public class UI {
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = tailX - length;
         return x;
+    }
+    public void drawInventory(){
+
+        int frameX = gp.tileSize*9;
+        int frameY = gp.tileSize;
+        int frameHeight = gp.tileSize*5;
+        int frameWidth = gp.tileSize*6;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        
     }
     public void drawSubWindow(int x, int y, int width, int height){
 
