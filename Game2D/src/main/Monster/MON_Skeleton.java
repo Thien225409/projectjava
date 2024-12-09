@@ -20,6 +20,7 @@ public class MON_Skeleton extends Entity{
 
         attack = 2;
         defense = 0;
+         projectile = new OBJ_Bow(gp);
         exp = 1;
         
         solidArea.x = 3;
@@ -67,6 +68,12 @@ public class MON_Skeleton extends Entity{
             }
 
             actionLockCounter = 0;
+        }
+         int i = new Random().nextInt(100) + 1;
+        if(i > 90 && projectile.alive == false && shotAvailableCounter == 30){
+        	projectile.set(worldX, worldY, direction, true, this);
+        	gp.projectileList.add(projectile);
+        	shotAvailableCounter = 0;
         }
     }
 
