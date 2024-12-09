@@ -48,6 +48,7 @@ public class Entity {
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
     public int invincibleCounter = 0;
+    public int shotAvailableCounter = 0;
     public int dyingCounter = 0;
     public int hpBarCounter = 0;
 
@@ -65,6 +66,9 @@ public class Entity {
     public int exp;// Kinh nghiệm
     public int nextLevelExp;
     public int coin;
+
+    //Lớp attackMonster
+    public Projectile projectile;
 
     // ITEM ATTRIBUTES
     public int attackValue;
@@ -88,14 +92,7 @@ public class Entity {
 
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
         if(this.type == 2 && contactPlayer == true){
-            if(gp.player.invincible == false){
-                // We can give damage
-                int damage = attack - gp.player.defense;
-                if(damage < 0) damage = 0;
-                life -= damage;
-                gp.player.invincible = true;
-            }
-
+            damagePlayer(attack);
         }
         if(collisionOn == false){
             switch (direction) {
@@ -121,7 +118,22 @@ public class Entity {
                 invincibleCounter = 0;
             }
         }
+
+        if(shotAvailableCounter < 30) {
+        	shotAvailableCounter ++;
+        }
     }
+
+    public void damagePlayer(int attack) {
+    	if(gp.player.invincible == false){
+            // We can give damage
+            int damage = attack - gp.player.defense;
+            if(damage < 0) damage = 0;
+            gp.player.life -= damage;
+            gp.player.invincible = true;
+        }
+    }
+    
     public void draw(Graphics2D g2){
 
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
