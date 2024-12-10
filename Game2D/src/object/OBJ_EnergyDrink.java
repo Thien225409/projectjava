@@ -11,6 +11,6 @@ public class OBJ_EnergyDrink extends Entity{
 
         name = "Energy Drink";
         down1 = setup("/objects/buff_attack", gp.tileSize, gp.tileSize);
-
+        decription = "[" + name + "]\nDrink to increase\nattack damage.";
     }
 }

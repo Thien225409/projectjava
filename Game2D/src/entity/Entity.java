@@ -73,7 +73,7 @@ public class Entity {
     // ITEM ATTRIBUTES
     public int attackValue;
     public int defenseValue;
-
+    public String decription = "";
 
     public Entity(GamePanel gp){
         this.gp = gp;

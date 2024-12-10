@@ -47,7 +47,6 @@ public class EventHandler {
         if(canTouchEvent == true){
             if(hit(6, 10, "any")){damagePit(6, 10,gp.dialogueState);}// TODO: Các địa điểm bị dính sát thương
             if(hit(10,10,"any")){damagePit(10, 10,gp.dialogueState);}
-            // if(hit(10,10,"any")){healingPool(10,10 ,gp.dialogueState);}// TODO: Các địa điểm để hồi máu (hồi nửa trái tim)
         }
 
         if(hit(21, 6, "any") == true){teleport(gp.dialogueState);}// TODO: Vị trí để teleport, cửa sẽ được đặt ở đây
@@ -87,19 +86,6 @@ public class EventHandler {
         // eventRect[col][row].eventDone = true;
         
         canTouchEvent = false;
-    }
-
-    public void healingPool(int col, int row, int gameState){
-
-        if(gp.keyH.enterPressed == true){
-            gp.gameState = gameState;
-            gp.player.attackCanceled = true;
-            gp.ui.currentDialogue = "";// TODO: Viết code Khi hồi máu thì hiển thị dialogue
-            if(gp.player.life < gp.player.maxLife){
-                gp.player.life += 1;
-            }
-            gp.aSetter.setMonster();
-        }
     }
 
     public void teleport(int gameState){

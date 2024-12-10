@@ -5,6 +5,8 @@ import main.Monster.MON_Ghost;
 import main.Monster.MON_Skeleton;
 import main.Monster.MON_Slime;
 import object.OBJ_Door;
+import object.OBJ_HP;
+import object.OBJ_HP_half;
 
 public class AssetSetter {
 
@@ -23,6 +25,14 @@ public class AssetSetter {
         gp.obj[1] = new OBJ_Door(gp);
         gp.obj[1].worldX =  gp.tileSize *21;
         gp.obj[1].worldY =  gp.tileSize *6;
+
+        gp.obj[2] = new OBJ_HP(gp);
+        gp.obj[2].worldX =  gp.tileSize *29;
+        gp.obj[2].worldY =  gp.tileSize *20;
+
+        gp.obj[3] = new OBJ_HP_half(gp);
+        gp.obj[3].worldX =  gp.tileSize *29;
+        gp.obj[3].worldY =  gp.tileSize *23;
     }
 
     public void setNPC(){
@@ -174,5 +184,6 @@ public class AssetSetter {
         gp.monster[34].worldX = gp.tileSize * 35;
         gp.monster[34].worldY = gp.tileSize * 15;
         
+
     }
 }

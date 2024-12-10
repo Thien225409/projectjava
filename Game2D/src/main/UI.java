@@ -525,6 +525,32 @@ public class UI {
         g2.setStroke(new BasicStroke(3));
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
+        // DECRIPTION FRAME
+        int dframeX = frameX;
+        int dframeY = frameY + frameHeight;
+        int dframeHeight = gp.tileSize*3;
+        int dframeWidth = frameWidth;
+
+        // DRAW DECRIPTION TEXT
+        int textX = dframeX + 20;
+        int textY = dframeY + gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(28F));
+
+        int itemIndex = getItemIndexOnSlot();
+
+        if(itemIndex < gp.player.inventory.size()){
+
+            drawSubWindow(dframeX, dframeY, dframeWidth, dframeHeight);
+            for(String line : gp.player.inventory.get(itemIndex).decription.split("\n")){
+                g2.drawString(line, textX , textY);
+                textY += 32;
+            }
+
+        }
+    }
+    public int getItemIndexOnSlot(){
+        int itemIndex = slotCol + (slotRow*5);
+        return itemIndex;
     }
     public void drawSubWindow(int x, int y, int width, int height){
 

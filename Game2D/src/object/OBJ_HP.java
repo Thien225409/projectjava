@@ -11,6 +11,6 @@ public class OBJ_HP extends Entity{
 
         name = "HP";
         down1 = setup("/objects/hp", gp.tileSize, gp.tileSize);
-
+        decription = "[" + name + "]\nDrink to heal HP.";
     }
 }
