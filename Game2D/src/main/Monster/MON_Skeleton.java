@@ -13,7 +13,7 @@ public class MON_Skeleton extends Entity{
         super(gp);
 
         this.gp = gp;
-        type = 2;
+        type = type_monster;
         name = "Skeleton";
         speed = 1;
         maxLife = 4;
@@ -21,7 +21,7 @@ public class MON_Skeleton extends Entity{
 
         attack = 2;
         defense = 0;
-         projectile = new OBJ_Bow(gp);
+        projectile = new OBJ_Bow(gp);
         exp = 1;
         
         solidArea.x = 3;

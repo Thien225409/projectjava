@@ -63,7 +63,6 @@ public class Player extends Entity {
         dexterity = 1; // Càng ít khéo léo thì càng nhận nhiều sát thương
         exp = 0;
         nextLevelExp = 5;
-        coin = 0;
         attackValue = 1;
         defenseValue = 1;
         attack = strength;
@@ -422,6 +421,18 @@ public class Player extends Entity {
             defense ++;
             gp.ui.addMessage("Level Up!");
             gp.ui.addMessage("Level " + level);
+        }
+    }
+    public void selectItem(){
+
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+
+        if(itemIndex < inventory.size()){
+
+            Entity selectedItem = inventory.get(itemIndex);
+            if(selectedItem.type  == type_consumable){
+                //TODO: Viết code cho phần sử dụng vật phẩm
+            }
         }
     }
     public void draw(Graphics2D g2){

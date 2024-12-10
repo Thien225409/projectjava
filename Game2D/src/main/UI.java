@@ -391,7 +391,7 @@ public class UI {
         final int frameX = gp.tileSize*2;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize*5;
-        final int frameHeight = gp.tileSize*9;
+        final int frameHeight = gp.tileSize*8;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         // TEXT
@@ -425,9 +425,6 @@ public class UI {
 
         textY += lineHeight;
         g2.drawString("NextLevel", textX, textY);
-
-        textY += lineHeight;
-        g2.drawString("Coin", textX, textY);
 
         // VALUES
         int tailX = (frameWidth + frameX) - 20;
@@ -474,12 +471,6 @@ public class UI {
         textX = getXforAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
         
-        textY += lineHeight;
-        value = String.valueOf(gp.player.coin);
-        textX = getXforAlignToRightText(value, tailX);
-        g2.drawString(value, textX, textY);
-
-
     }
     public int getXforAlignToRightText(String text, int tailX){
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
@@ -502,10 +493,18 @@ public class UI {
         int slotY = slotYstart;
         int slotSize = gp.tileSize+3;
 
+        // CURSOR
+        int cursorX = slotXstart + (slotSize* slotCol);
+        int cursorY = slotYstart + (slotSize* slotRow);
+        int cursorWidth = gp.tileSize;
+        int cursorHeight = gp.tileSize;
+        g2.setColor(new Color(240,190,90));
+        g2.fillRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
         // DRAW PLAYER'S ITEMS
         for(int i = 0; i < gp.player.inventory.size(); i++){
 
             g2.drawImage(gp.player.inventory.get(i).down1, slotX,slotY,null);
+            
             slotX += slotSize;
 
             if(i == 4 || i == 9 || i == 14){
@@ -513,13 +512,6 @@ public class UI {
                 slotY += slotSize;
             }
         }
-
-
-        // CURSOR
-        int cursorX = slotXstart + (slotSize* slotCol);
-        int cursorY = slotYstart + (slotSize* slotRow);
-        int cursorWidth = gp.tileSize;
-        int cursorHeight = gp.tileSize;
         // DRAW CURSOR
         g2.setColor(Color.white);
         g2.setStroke(new BasicStroke(3));

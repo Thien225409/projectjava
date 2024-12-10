@@ -53,7 +53,6 @@ public class Entity {
     public int hpBarCounter = 0;
 
     // CHARACTER ATTIBUTES
-    public int type; // 0: player , 1: npc , 2: monster
     public String name;
     public int speed;
     public int maxLife;
@@ -65,7 +64,6 @@ public class Entity {
     public int defense;// Phòng thủ
     public int exp;// Kinh nghiệm
     public int nextLevelExp;
-    public int coin;
 
     //Lớp attackMonster
     public Projectile projectile;
@@ -74,6 +72,13 @@ public class Entity {
     public int attackValue;
     public int defenseValue;
     public String decription = "";
+
+    // TYPE
+    public int type; // 0: player , 1: npc , 2: monster
+    public final int type_player  = 0;
+    public final int type_npc = 1;
+    public final int type_monster = 2;
+    public final int type_consumable = 3;
 
     public Entity(GamePanel gp){
         this.gp = gp;
@@ -194,7 +199,7 @@ public class Entity {
         }
 
         // Monster HP bar
-        if(type == 2 && hpBarOn == true){
+        if(type == type_monster && hpBarOn == true){
             double oneScale = (double) gp.tileSize/maxLife;
             double hpBarValue = oneScale*life;
 

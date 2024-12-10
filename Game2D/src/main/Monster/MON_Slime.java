@@ -12,7 +12,7 @@ public class MON_Slime extends Entity{
         super(gp);
         this.gp = gp;
         
-        type = 2;
+        type = type_monster;
         name = "Smile";
         speed = 1;
         maxLife = 2;

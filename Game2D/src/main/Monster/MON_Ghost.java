@@ -14,7 +14,7 @@ public class MON_Ghost extends Entity{
         super(gp);
         this.gp = gp;
 
-        type = 2;
+        type = type_monster;
         name = "Ghost";
         speed = 1;
         maxLife = 2;
@@ -172,7 +172,7 @@ public class MON_Ghost extends Entity{
 
         // Monster HP bar
 
-        if(hpBarOn == true && type == 2){
+        if(type == type_monster && hpBarOn == true){
 
             double oneScale = (double) gp.tileSize/maxLife;
             double hpBarValue = oneScale*life;
