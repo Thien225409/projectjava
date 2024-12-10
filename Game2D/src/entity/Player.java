@@ -432,6 +432,8 @@ public class Player extends Entity {
             Entity selectedItem = inventory.get(itemIndex);
             if(selectedItem.type  == type_consumable){
                 //TODO: Viết code cho phần sử dụng vật phẩm
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
             }
         }
     }

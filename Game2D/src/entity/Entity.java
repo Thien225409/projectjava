@@ -86,6 +86,7 @@ public class Entity {
     public void setAction() {}
     public void damageReaction(){}
     public void speak() {}
+    public void use(Entity entity){}
     public void update(){
 
         setAction();
