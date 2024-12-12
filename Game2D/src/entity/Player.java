@@ -74,8 +74,6 @@ public class Player extends Entity {
         inventory.add(new OBJ_HP(gp));
         inventory.add(new OBJ_HP_half(gp));
         inventory.add(new OBJ_EnergyDrink(gp));
-        
-
     }
 
     public void getPlayerImage(){
@@ -394,6 +392,7 @@ public class Player extends Entity {
                 int damage = attack - gp.monster[i].defense;
 
                 if(damage < 0) damage = 0;
+
                 gp.monster[i].life -= damage;
                 gp.ui.addMessage(damage + " damage!");
 

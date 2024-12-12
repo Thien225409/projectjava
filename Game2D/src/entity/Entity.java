@@ -69,6 +69,7 @@ public class Entity {
     public Projectile projectile;
 
     // ITEM ATTRIBUTES
+    public int value;
     public int attackValue;
     public int defenseValue;
     public String decription = "";
@@ -245,7 +246,7 @@ public class Entity {
                 alive = false;
             }
         }
-        g2.drawImage(image, screenX , screenY , gp.tileSize , gp.tileSize , null);
+        g2.drawImage(image, screenX , screenY, null);
         changeAlpha(g2, 1f);
     }
     

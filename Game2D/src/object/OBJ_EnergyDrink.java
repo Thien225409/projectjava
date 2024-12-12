@@ -6,13 +6,13 @@ import main.GamePanel;
 public class OBJ_EnergyDrink extends Entity{
 
     GamePanel gp;
-    int value = 1;
     public OBJ_EnergyDrink(GamePanel gp){
 
         super(gp);
 
         this.gp = gp;
         type = type_consumable;
+        value = 1;
         name = "Energy Drink";
         down1 = setup("/objects/buff_attack", gp.tileSize, gp.tileSize);
         decription = "[" + name + "]\nDrink to increase " + value + "\nattack damage.";

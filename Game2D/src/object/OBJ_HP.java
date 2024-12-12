@@ -6,13 +6,13 @@ import main.GamePanel;
 public class OBJ_HP extends Entity{
 
     GamePanel gp;
-    int value = 2;
     public OBJ_HP(GamePanel gp){
 
         super(gp);
         
         this.gp = gp;
         type = type_consumable;
+        value = 2;
         name = "HP";
         down1 = setup("/objects/hp", gp.tileSize, gp.tileSize);
         decription = "[" + name + "]\nDrink to recover " + value + ".";
