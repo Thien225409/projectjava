@@ -46,6 +46,7 @@ public class Player extends Entity {
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
+        getPlayerDefendImage();
         setItems();
     }
     
@@ -143,6 +144,22 @@ public class Player extends Entity {
         attackLeft5 = setup("/player/attack_left1.5", gp.tileSize*2, gp.tileSize);
         attackLeft6 = setup("/player/attack_left1.6", gp.tileSize*2, gp.tileSize);
 
+    }
+    public void getPlayerDefendImage(){
+
+        defendLeft1 = setup("/player/defend_left1", gp.tileSize, gp.tileSize);
+        defendLeft2 = setup("/player/defend_left2", gp.tileSize, gp.tileSize);
+        defendLeft3 = setup("/player/defend_left3", gp.tileSize, gp.tileSize);
+        defendLeft4 = setup("/player/defend_left4", gp.tileSize, gp.tileSize);
+        defendLeft5 = setup("/player/defend_left5", gp.tileSize, gp.tileSize);
+        defendLeft6 = setup("/player/defend_left6", gp.tileSize, gp.tileSize);
+
+        defendRight1 = setup("/player/defend_right1", gp.tileSize, gp.tileSize);
+        defendRight2 = setup("/player/defend_right2", gp.tileSize, gp.tileSize);
+        defendRight3 = setup("/player/defend_right3", gp.tileSize, gp.tileSize);
+        defendRight4 = setup("/player/defend_right4", gp.tileSize, gp.tileSize);
+        defendRight5 = setup("/player/defend_right5", gp.tileSize, gp.tileSize);
+        defendRight6 = setup("/player/defend_right6", gp.tileSize, gp.tileSize);
     }
     public void update(){
 
@@ -256,11 +273,12 @@ public class Player extends Entity {
         // INVINCIBLE COUNTER
         if(invincible == true){
             invincibleCounter ++;
-            if(invincibleCounter > 180){
+            if(invincibleCounter > 60){
                 invincible = false;
                 invincibleCounter = 0;
             }
         }
+        if(life > maxLife) life = maxLife;
     }
 
     public void attacking(){
@@ -351,6 +369,7 @@ public class Player extends Entity {
     public void pickUpObject(int i){
         if(i != 999){
 
+            // INVENTORY ITEMS
             String text;
             if(inventory.size() != maxInventorySize){
 
@@ -482,6 +501,7 @@ public class Player extends Entity {
                 break;
             case "down":
                 if(attacking == false){
+
                     if(spriteNum == 1) image = down1;
                     if(spriteNum == 2) image = down2;
                     if(spriteNum == 3) image = down3;
@@ -547,7 +567,40 @@ public class Player extends Entity {
         
         if(invincible == true){
             // TODO:Vẽ cái gì đó khi player bị nhận sát thương
-            
+            switch (direction) {
+                case "up":
+                    if(invincibleCounter < 5) image = defendRight1;
+                    if(invincibleCounter >= 5 && invincibleCounter < 10) image = defendRight2;
+                    if(invincibleCounter >= 10 && invincibleCounter < 15) image = defendRight3;
+                    if(invincibleCounter >= 15 && invincibleCounter < 20) image = defendRight4;
+                    if(invincibleCounter >= 20 && invincibleCounter < 25) image = defendRight5;
+                    if(invincibleCounter >= 25 && invincibleCounter < 30) image = defendRight6;
+                    break;
+                case "down":
+                    if(invincibleCounter < 5) image = defendLeft1;
+                    if(invincibleCounter >= 5 && invincibleCounter < 10) image = defendLeft2;
+                    if(invincibleCounter >= 10 && invincibleCounter < 15) image = defendLeft3;
+                    if(invincibleCounter >= 15 && invincibleCounter < 20) image = defendLeft4;
+                    if(invincibleCounter >= 20 && invincibleCounter < 25) image = defendLeft5;
+                    if(invincibleCounter >= 25 && invincibleCounter < 20) image = defendLeft6;
+                    break;
+                case "right":
+                    if(invincibleCounter < 5) image = defendRight1;
+                    if(invincibleCounter >= 5 && invincibleCounter < 10) image = defendRight2;
+                    if(invincibleCounter >= 10 && invincibleCounter < 15) image = defendRight3;
+                    if(invincibleCounter >= 15 && invincibleCounter < 20) image = defendRight4;
+                    if(invincibleCounter >= 20 && invincibleCounter < 25) image = defendRight5;
+                    if(invincibleCounter >= 25 && invincibleCounter < 30) image = defendRight6;
+                    break;
+                case "left":
+                    if(invincibleCounter < 5) image = defendLeft1;
+                    if(invincibleCounter >= 5 && invincibleCounter < 10) image = defendLeft2;
+                    if(invincibleCounter >= 10 && invincibleCounter < 15) image = defendLeft3;
+                    if(invincibleCounter >= 15 && invincibleCounter < 20) image = defendLeft4;
+                    if(invincibleCounter >= 20 && invincibleCounter < 25) image = defendLeft5;
+                    if(invincibleCounter >= 25 && invincibleCounter < 20) image = defendLeft6;
+                    break;
+            }
         }
         g2.drawImage(image , x, y, null );
     }

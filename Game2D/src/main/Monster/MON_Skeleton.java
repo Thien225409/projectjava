@@ -5,6 +5,9 @@ import java.util.Random;
 import entity.Entity;
 import main.GamePanel;
 import object.OBJ_Bow;
+import object.OBJ_EnergyDrink;
+import object.OBJ_HP;
+import object.OBJ_HP_half;
 
 public class MON_Skeleton extends Entity{
 
@@ -83,5 +86,19 @@ public class MON_Skeleton extends Entity{
         actionLockCounter = 0;
         direction = gp.player.direction;
         //TODO: Setup Skeleton AI
+    }
+    public void checkDrop(){
+        
+        int i = new Random().nextInt(100) + 1;
+        //SET THE MONSTER DROP
+        if(i < 50){
+            dropItem(new OBJ_HP(gp));
+        }
+        if(i >= 50 && i < 75){
+            dropItem(new OBJ_HP_half(gp));
+        }
+        if(i >= 75 && i < 100){
+            dropItem(new OBJ_EnergyDrink(gp));
+        }
     }
 }

@@ -25,6 +25,9 @@ public class Entity {
     attackLeft1, attackLeft2, attackLeft3, attackLeft4, attackLeft5,attackLeft6,
     attackRight1, attackRight2, attackRight3, attackRight4, attackRight5,attackRight6;
 
+    public BufferedImage defendLeft1, defendLeft2, defendLeft3, defendLeft4, defendLeft5, defendLeft6,
+    defendRight1, defendRight2, defendRight3, defendRight4, defendRight5, defendRight6;
+
     public BufferedImage image, image2, image3;
     public Rectangle solidArea = new Rectangle(0 , 0 , 48 , 48);
     public Rectangle attackArea = new Rectangle(0, 0, 0,0);
@@ -88,6 +91,18 @@ public class Entity {
     public void damageReaction(){}
     public void speak() {}
     public void use(Entity entity){}
+    public void checkDrop(){}
+    public void dropItem(Entity droppedItem){
+
+        for(int i = 0; i < gp.obj.length; i++){
+            if(gp.obj[i] == null){
+                gp.obj[i] = droppedItem;
+                gp.obj[i].worldX =  worldX;
+                gp.obj[i].worldY = worldY;
+                break;
+            }
+        }
+    }
     public void update(){
 
         setAction();
@@ -137,6 +152,18 @@ public class Entity {
             int damage = attack - gp.player.defense;
             if(damage < 0) damage = 0;
             gp.player.life -= damage;
+            if(direction == "right"){
+                gp.player.direction = "left";
+            }
+            if(direction == "left"){
+                gp.player.direction = "right";
+            }
+            if(direction == "up"){
+                gp.player.direction = "down";
+            }
+            if(direction == "down"){
+                gp.player.direction = "up";
+            }
             gp.player.invincible = true;
         }
     }
@@ -225,7 +252,6 @@ public class Entity {
         }
 
         if(dying == true){
-            //TODO: Khi quái chết thì tải animation die của quái
             dyingCounter ++;
 
             int jump = 5;
@@ -240,6 +266,7 @@ public class Entity {
             if(dyingCounter > jump*8 && dyingCounter <= jump*31) {        		 
                 changeAlpha(g2, 1f);
                 hpBarOn = false;
+                if(die == null) dyingCounter = jump*32;
                 image = die;
             }
             if(dyingCounter > jump*31){

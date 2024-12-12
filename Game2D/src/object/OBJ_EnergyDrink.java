@@ -9,7 +9,6 @@ public class OBJ_EnergyDrink extends Entity{
     public OBJ_EnergyDrink(GamePanel gp){
 
         super(gp);
-
         this.gp = gp;
         type = type_consumable;
         value = 1;

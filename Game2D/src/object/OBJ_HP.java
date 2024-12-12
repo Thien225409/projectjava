@@ -23,8 +23,5 @@ public class OBJ_HP extends Entity{
         gp.ui.addMessage("You drink the " + name);
         gp.ui.addMessage("Your life has been recovered by " + value + " half heart.");
         entity.life += value;
-        if(gp.player.life > gp.player.maxLife){
-            gp.player.life = gp.player.maxLife;
-        }
     }
 }
