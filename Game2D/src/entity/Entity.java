@@ -37,7 +37,7 @@ public class Entity {
     public boolean collision = false;
     String dialogues [] = new String[20];
 
-    // STATE
+    // STATE (TRẠNG THÁI)
     public int worldX , worldY;
     public String direction = "down";
     public int spriteNum = 1;
@@ -49,7 +49,7 @@ public class Entity {
     public boolean dying = false;
     public boolean hpBarOn = false;
 
-    // COUNTER
+    // COUNTER (BIẾN ĐẾM)
     public int spriteCounter = 0;
     public int actionLockCounter = 0;
     public int invincibleCounter = 0;
@@ -57,7 +57,7 @@ public class Entity {
     public int dyingCounter = 0;
     public int hpBarCounter = 0;
 
-    // CHARACTER ATTIBUTES
+    // CHARACTER ATTIBUTES (ĐẶC ĐIỂM NHÂN VẬT)
     public String name;
     public int speed;
     public int maxLife;
@@ -83,13 +83,13 @@ public class Entity {
     	return yDistance;
     }   
 
-    // ITEM ATTRIBUTES
+    // ITEM ATTRIBUTES (ĐẶC ĐIỂM VẬT PHẨM)
     public int value;
     public int attackValue;
     public int defenseValue;
     public String decription = "";
 
-    // TYPE
+    // TYPE (LOẠI)
     public int type; // 0: player , 1: npc , 2: monster
     public final int type_player  = 0;
     public final int type_npc = 1;
@@ -185,7 +185,7 @@ public class Entity {
 
     public void damagePlayer(int attack) {
     	if(gp.player.invincible == false){
-            // We can give damage
+            // NGƯỜI CHƠI CÓ THỂ CHỊU DMGDMG
             int damage = attack - gp.player.defense;
             if(damage < 0) damage = 0;
             gp.player.life -= damage;
@@ -209,7 +209,7 @@ public class Entity {
 
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
-        // Stop moving the camere at the edge
+        // Stop moving the camere at the edge (Ngừng di chuyển camera khi ở lề)
 
         if(gp.player.screenX > gp.player.worldX){
             screenX = worldX;
@@ -237,11 +237,11 @@ public class Entity {
         else if(gp.player.screenX > gp.player.worldX || gp.player.screenY > gp.player.worldY ||
             rightOffset > gp.worldWidth - gp.player.worldX ||
             bottomOffset > gp.worldHeight - gp.player.worldY) {
-                // WHEN STOP CAMERA
+                // WHEN STOP CAMERA (ngừng camera)
                 subdraw(g2, screenX, screenY);
         }
     }
-    // SUBDRAW
+    // SUBDRAW (Vẽ phụ)
     public void subdraw(Graphics2D g2, int screenX, int screenY){
 
         BufferedImage image = null;
@@ -264,7 +264,7 @@ public class Entity {
                 break;
         }
 
-        // Monster HP bar
+        // Monster HP bar (Thanh HP của quái)
         if(type == type_monster && hpBarOn == true){
             double oneScale = (double) gp.tileSize/maxLife;
             double hpBarValue = oneScale*life;
