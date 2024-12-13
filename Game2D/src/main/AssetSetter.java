@@ -1,7 +1,11 @@
 package main;
 
 import entity.NPC_OldMan;
+import main.Monster.MON_FlyingEye;
 import main.Monster.MON_Ghost;
+import main.Monster.MON_Goblin;
+import main.Monster.MON_Miniboss;
+import main.Monster.MON_Mushroom;
 import main.Monster.MON_Skeleton;
 import main.Monster.MON_Slime;
 import object.OBJ_Door;
@@ -44,7 +48,7 @@ public class AssetSetter {
 
     public void setMonster(){
         // TODO: Set vị trí cho quái
-        gp.monster[0] = new MON_Skeleton(gp);
+       gp.monster[0] = new MON_Skeleton(gp);
         gp.monster[0].worldX = gp.tileSize *3;
         gp.monster[0].worldY = gp.tileSize *22;
 
@@ -153,11 +157,11 @@ public class AssetSetter {
         gp.monster[26].worldY = gp.tileSize * 20;
         
         gp.monster[27] = new MON_Slime(gp);
-        gp.monster[27].worldX = gp.tileSize * 50;
+        gp.monster[27].worldX = gp.tileSize * 45;
         gp.monster[27].worldY = gp.tileSize * 25;
         
         gp.monster[28] = new MON_Slime(gp);
-        gp.monster[28].worldX = gp.tileSize * 50;
+        gp.monster[28].worldX = gp.tileSize * 45;
         gp.monster[28].worldY = gp.tileSize * 35;
         
         gp.monster[29] = new MON_Slime(gp);
@@ -173,8 +177,8 @@ public class AssetSetter {
         gp.monster[31].worldY = gp.tileSize * 48;
         
         gp.monster[32] = new MON_Slime(gp);
-        gp.monster[32].worldX = gp.tileSize * 22;
-        gp.monster[32].worldY = gp.tileSize * 36;
+        gp.monster[32].worldX = gp.tileSize * 21;
+        gp.monster[32].worldY = gp.tileSize * 35;
         
         gp.monster[33] = new MON_Slime(gp);
         gp.monster[33].worldX = gp.tileSize * 66;
@@ -184,6 +188,65 @@ public class AssetSetter {
         gp.monster[34].worldX = gp.tileSize * 35;
         gp.monster[34].worldY = gp.tileSize * 15;
         
+        gp.monster[35] = new MON_Mushroom(gp);
+        gp.monster[35].worldX = gp.tileSize * 5;
+        gp.monster[35].worldY = gp.tileSize * 2;
+        
+        gp.monster[36] = new MON_Mushroom(gp);
+        gp.monster[36].worldX = gp.tileSize * 15;
+        gp.monster[36].worldY = gp.tileSize * 8;
+        
+        gp.monster[37] = new MON_Mushroom(gp);
+        gp.monster[37].worldX = gp.tileSize * 10;
+        gp.monster[37].worldY = gp.tileSize * 5;
+        
+        gp.monster[38] = new MON_Miniboss(gp);
+        gp.monster[38].worldX = gp.tileSize * 18;
+        gp.monster[38].worldY = gp.tileSize * 6;
+        
+        gp.monster[39] = new MON_FlyingEye(gp);
+        gp.monster[39].worldX = gp.tileSize * 0;
+        gp.monster[39].worldY = gp.tileSize * 0;
+        
+        gp.monster[40] = new MON_FlyingEye(gp);
+        gp.monster[40].worldX = gp.tileSize * 0;
+        gp.monster[40].worldY = gp.tileSize * 14;
+        
+        gp.monster[41] = new MON_FlyingEye(gp);
+        gp.monster[41].worldX = gp.tileSize * 24;
+        gp.monster[41].worldY = gp.tileSize * 0;
+        
+        gp.monster[42] = new MON_FlyingEye(gp);
+        gp.monster[42].worldX = gp.tileSize * 24;
+        gp.monster[42].worldY = gp.tileSize * 14;
+        
+        gp.monster[43] = new MON_FlyingEye(gp);
+        gp.monster[43].worldX = gp.tileSize * 3;
+        gp.monster[43].worldY = gp.tileSize * 11;
+        
+        gp.monster[44] = new MON_Goblin(gp);
+        gp.monster[44].worldX = gp.tileSize * 20;
+        gp.monster[44].worldY = gp.tileSize * 29;
+        
+        gp.monster[45] = new MON_Goblin(gp);
+        gp.monster[45].worldX = gp.tileSize * 30;
+        gp.monster[45].worldY = gp.tileSize * 29;
+        
+        gp.monster[46] = new MON_Goblin(gp);
+        gp.monster[46].worldX = gp.tileSize * 40;
+        gp.monster[46].worldY = gp.tileSize * 33;
+        
+        gp.monster[47] = new MON_Goblin(gp);
+        gp.monster[47].worldX = gp.tileSize * 20;
+        gp.monster[47].worldY = gp.tileSize * 41;
+        
+        gp.monster[48] = new MON_Goblin(gp);
+        gp.monster[48].worldX = gp.tileSize * 30;
+        gp.monster[48].worldY = gp.tileSize * 41;
+        
+        gp.monster[49] = new MON_Goblin(gp);
+        gp.monster[49].worldX = gp.tileSize * 40;
+        gp.monster[49].worldY = gp.tileSize * 42;
 
     }
 }
