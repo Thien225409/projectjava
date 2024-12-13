@@ -35,7 +35,7 @@ public class EventHandler {
 
     public void checkEvent(){
 
-        // Check if the player character is more than 1 tile away from the last event
+        // Check if the player character is more than 1 tile away from the last event (Kiểm tra xem nếu người chơi đang cách nhiều hơn 1 tile từ sự kiện trước đó)
         int xDistance = Math.abs(gp.player.worldX - previousEventX);
         int yDistance =  Math.abs(gp.player.worldY - previousEventY);
         int distance = Math.max(xDistance, yDistance);

@@ -17,7 +17,7 @@ public class Config {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("Game2D\\config.txt"));
 
-            // FULL SCREEN
+            // FULL SCREEN (Toàn màn hình)
             if(gp.fullScreenOn == true){
                 bw.write("On");
             }
@@ -26,11 +26,11 @@ public class Config {
             }
             bw.newLine();
 
-            // Music volume
+            // Music volume (Âm lượng nhạc)
             bw.write(String.valueOf(gp.music.volumeScale));
             bw.newLine();
 
-            // SE volume
+            // SE volume (Âm lượng hiệu ứng âm thanh)
             bw.write(String.valueOf(gp.se.volumeScale));
             bw.newLine();
 
@@ -47,7 +47,7 @@ public class Config {
 
             String s = br.readLine();
 
-            // FULL SCREEN
+            // FULL SCREEN (Toàn màn hình)
             if(s.equals("On")){
                 gp.fullScreenOn = true;
             }
@@ -55,11 +55,11 @@ public class Config {
                 gp.fullScreenOn = false;
             }
 
-            // Music volume
+            // Music volume (Âm lượng nhạc nền)
             s = br.readLine();
             gp.music.volumeScale = Integer.parseInt(s);
 
-            // SE volume
+            // SE volume (Âm lượng hiệu ứng âm thanh)
             s = br.readLine();
             gp.se.volumeScale = Integer.parseInt(s);
 

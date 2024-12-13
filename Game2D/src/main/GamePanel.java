@@ -17,7 +17,7 @@ import entity.Player;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
-    // SCREEN SETTINGS
+    // SCREEN SETTINGS (Thiết lập màn hình)
     final int originalTileSize = 16;
     final int scale = 3;
     public final int tileSize = originalTileSize * scale; //48
@@ -27,23 +27,23 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 
-    //WORLD SETTINGS
+    //WORLD SETTINGS (Thiết lập thế giới (map))
     public final int maxWorldCol = 71;
     public final int maxWorldRow = 51;
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
 
-    //FULL SCREEN
+    //FULL SCREEN (Toàn màn hình)
     int screenWidth2 = screenWidth;
     int screenHeight2 = screenHeight;
     BufferedImage tempScreen;
     Graphics2D g2;
     public boolean fullScreenOn = false;
 
-    //FPS
+    //FPS 
     int FPS = 60;
 
-    //SYSTEM
+    //SYSTEM (Hệ thống)
     public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
@@ -54,10 +54,10 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     Config config = new Config(this);
 
-    // EVENT HANDLER
+    // EVENT HANDLER (Xử lý sự kiện)
     public EventHandler eHandler = new EventHandler(this);
 
-    //ENTITY AND OBJECT
+    //ENTITY AND OBJECT (Thực thể và vật thể)
     public Player player = new Player(this , keyH);
     public Entity obj[] = new Entity[20];
     public Entity npc[] = new Entity[10];
@@ -65,7 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
     ArrayList<Entity> entityList = new ArrayList<>();
     public ArrayList<Entity> projectileList = new ArrayList<>();
 
-    //GAME STATE
+    //GAME STATE (trạng thái game)
     public int gameState;
     public int titleState = 0;
     public final int playState = 1;
@@ -114,12 +114,12 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public void setFullScreen(){
 
-        // GET LOCAL SCREEN DEVICE 
+        // GET LOCAL SCREEN DEVICE (lấy thông tin màn hình thiết bị)
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
 
         gd.setFullScreenWindow(Main.window);
-        // GET FULL SCREEN WIDTH AND HEIGHT
+        // GET FULL SCREEN WIDTH AND HEIGHT (Lấy chiều rộng, cao toàn màn hình)
         screenWidth2 = Main.window.getWidth();
         screenHeight2 = Main.window.getHeight();
 
@@ -164,9 +164,9 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(){
 
         if(gameState == playState){
-            // PLAYER
+            // PLAYER (Cập nhật player)
             player.update();
-            // MONSTER
+            // MONSTER (Cập nhật quái)
             for(int i = 0; i < monster.length; i++){
                 if(monster[i] != null){
                     if(monster[i].alive == true && monster[i].dying == false) monster[i].update();
@@ -176,7 +176,7 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             }
-            //MONSTER ATTACK
+            //MONSTER ATTACK (Quái tấn công)
             for(int i = 0; i < projectileList.size(); i++){
                 if(projectileList.get(i) != null){
                     if(projectileList.get(i).alive == true ) projectileList.get(i).update();
@@ -191,50 +191,50 @@ public class GamePanel extends JPanel implements Runnable {
     }
     public void drawToTempScreen(){
 
-        //DEBUG
+        //DEBUG 
         long drawStart = 0;
         if(keyH.showDebugText == true){
             drawStart = System.nanoTime();
         }
 
-        // TITLE SCREEN
+        // TITLE SCREEN (Màn hình tiêu đề)
         if(gameState == titleState){
             ui.draw(g2);
         }
-        // OTHERS
+        // OTHERS (Khác)
         else{
             //TILE
             tileM.draw(g2);
             
-            // ADD ENTITIES TO THE LIST
+            // ADD ENTITIES TO THE LIST (Thêm các thực thể vào danh sách)
             entityList.add(player);
-            // NPC
+            // NPC (Thêm NPC)
             for(int i = 0; i < npc.length ; i++){
                 if(npc[i] != null){
                     entityList.add(npc[i]);
                 }
             }
-            // OBJECTS
+            // OBJECTS (Thêm vật thể)
             for(int i = 0; i < obj.length; i++){
                 if(obj[i] != null){
                     entityList.add(obj[i]);
                 }
             }
-            // MONSTER
+            // MONSTER (Thêm quái vậtvật)
             for(int i = 0; i < monster.length; i++){
                 if(monster[i] != null){
                     entityList.add(monster[i]);
                 }
             }
 
-            //MONSTER ATTACK
+            //MONSTER ATTACK (Thêm đòn tấn công của quái (projectiles))
             for(int i = 0; i < projectileList.size(); i++){
                 if(projectileList.get(i) != null){
                     entityList.add(projectileList.get(i));
                 }
             }
 
-            // SORT
+            // SORT (Sắp xếp)
             Collections.sort(entityList, new Comparator<Entity>() {
 
                 @Override
@@ -245,14 +245,14 @@ public class GamePanel extends JPanel implements Runnable {
                 
             });
 
-            // DRAW ENTITIES
+            // DRAW ENTITIES (Vẽ các thực thể)
             for(int i = 0; i < entityList.size(); i++){
                 entityList.get(i).draw(g2);
             }
-            // EMPTY ENTITY LIST
+            // EMPTY ENTITY LIST (Xóa danh sách thực thể)
             entityList.clear();
 
-            //UI
+            //UI (Vẽ giao diện UI)
             ui.draw(g2);
         }
 

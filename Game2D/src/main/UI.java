@@ -38,7 +38,7 @@ public class UI {
         // OBJ_Key key = new OBJ_Key(gp);
         // keyImage = key.image;
 
-        // CREATE HUD OBJECT
+        // CREATE HUD OBJECT (Tạo vật thể "HUD"???)
         Entity heart = new OBJ_Heart(gp);
         heart_full = heart.image;
         heart_half = heart.image2;
@@ -117,26 +117,26 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.WHITE);
 
-        // TITLE STATE
+        // TITLE STATE (Trạng thái màn hình menu)
         if(gp.gameState == gp.titleState){
             drawTitleScreen();
         }
-        // PLAY STATE
+        // PLAY STATE (Trạng thái đang chơi)
         if(gp.gameState == gp.playState){
             drawPlayerLife();
             drawMessage();
         }
-        // OPTIONS STATE
+        // OPTIONS STATE (Trạng thái tùy chọn cài đặt)
         if(gp.gameState == gp.optionsState){
             drawPlayerLife();
             drawOptionsScreen();
         }
-        // DIALOGUE STATE
+        // DIALOGUE STATE (Trạng thái đang có thoại)
         if(gp.gameState == gp.dialogueState){
             drawPlayerLife();
             drawDialogueScreen();
         }
-        // CHARACTER STATE
+        // CHARACTER STATE (Trạng thái đang mở bảng thông số nhân vật)
         if(gp.gameState == gp.characterState){
             drawCharacterScreen();
             drawInventory();
@@ -217,7 +217,7 @@ public class UI {
         int y = gp.tileSize/2;
         int i = 0;
 
-        // DRAW MAX LIFE
+        // DRAW MAX LIFE (Vẽ full HP nhân vật)
         while(i < gp.player.maxLife/2){
 
             g2.drawImage(heart_blank, x, y, null);
@@ -229,7 +229,7 @@ public class UI {
         x = gp.tileSize/2;
         y = gp.tileSize/2;
         i = 0;
-        // DRAW CURRENT LIFE
+        // DRAW CURRENT LIFE (Vẽ thanh HP hiện tại)
         while(i < gp.player.life){
             
             g2.drawImage(heart_half,x , y, null);
@@ -251,25 +251,25 @@ public class UI {
         g2.setColor(new Color(0, 0, 0));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
-        // TITLE NAME
+        // TITLE NAME (Tên tiêu đề)
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 90F));
         String text = "Name Game Here";
         int x = getXforCenterText(text);
         int y = gp.tileSize*3;
 
-        // SHADOW
+        // SHADOW (Bóng)
         g2.setColor(Color.GRAY);
         g2.drawString(text, x+5, y+5);
-        // MAIN COLOR
+        // MAIN COLOR (Màu chính)
         g2.setColor(Color.white);
         g2.drawString(text, x, y);
 
-        // (MAIN CHARACTER) IMAGE
+        // (MAIN CHARACTER) IMAGE ((Nhân vật chính) Hình ảnh)
         x = gp.screenWidth/2 - (gp.tileSize*2)/2;
         y += gp.tileSize*2;
         g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
 
-        // MENU
+        // MENU 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 35F));
 
         text = "NEW GAME";
@@ -300,7 +300,7 @@ public class UI {
 
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(32F));
-        // CREATE A FRAME
+        // CREATE A FRAME (Tạo 1 khung hình)
         final int frameX = gp.tileSize*6;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize*8;
@@ -321,13 +321,13 @@ public class UI {
         int textX;
         int textY;
 
-        // TITLE
+        // TITLE (Tiêu đề)
         String text = "Options";
         textX = getXforCenterText(text);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
 
-        // FULL SCREEN ON/OFF
+        // FULL SCREEN ON/OFF (Bật/Tắt toàn màn hình)
         text = "Full Screen";
         textX = frameX + gp.tileSize;
         textY += gp.tileSize*2;
@@ -343,21 +343,21 @@ public class UI {
                 subState = 1;
             }
         }
-        // MUSIC
+        // MUSIC (Nhạc)
         text = "Music";
         textY += gp.tileSize;
         g2.drawString(text, textX, textY);
         if(commandNum == 1){
             g2.drawString(">", textX - 28, textY);
         }
-        // SE
+        // SE (Hiệu ứng âm thanh)
         text = "SE";
         textY += gp.tileSize;
         g2.drawString(text, textX, textY);
         if(commandNum == 2){
             g2.drawString(">", textX - 28, textY);
         }
-        // CONTROL
+        // CONTROL (Điều khiển)
         text = "Control";
         textY += gp.tileSize;
         g2.drawString(text, textX, textY);
@@ -368,7 +368,7 @@ public class UI {
                 commandNum = 0;
             }
         }
-        // END GAME
+        // END GAME (Kết thúc trò chơi)
         text = "End Game";
         textY += gp.tileSize;
         g2.drawString(text, textX, textY);
@@ -379,7 +379,7 @@ public class UI {
                 commandNum = 0;
             }
         }
-        // BACK
+        // BACK (Quay lại)
         text = "Back";
         textY += gp.tileSize*2;
         g2.drawString(text, textX, textY);
@@ -391,7 +391,7 @@ public class UI {
             }
         }
 
-        // FULL SCREEN CHECK BOX
+        // FULL SCREEN CHECK BOX (Check toàn màn hình)
         textX = frameX + gp.tileSize*5;
         textY = frameY + gp.tileSize*2 + 24;
         g2.setStroke(new BasicStroke(3));
@@ -400,13 +400,13 @@ public class UI {
             g2.fillRect(textX, textY, 24, 24);;
         }
 
-        // MUSIC VOLUME
+        // MUSIC VOLUME (Âm lượng nhạc)
         textY += gp.tileSize;
         g2.drawRect(textX, textY, 120, 24);// 120/5 = 24
         int volumeWidth = 24 * gp.music.volumeScale;
         g2.fillRect(textX, textY, volumeWidth, 24);
 
-        // SE
+        // SE (Âm lượng hiệu ứng âm thanh)
         textY += gp.tileSize;
         g2.drawRect(textX, textY, 120, 24);
         volumeWidth = 24 * gp.se.volumeScale;
@@ -425,7 +425,7 @@ public class UI {
             textY += 40;
         }
 
-        // BACK
+        // BACK (Quay lại)
         textY = frameY + gp.tileSize*9;
         g2.drawString("Back", textX, textY);
         if(commandNum == 0){
@@ -435,11 +435,51 @@ public class UI {
             }
         }
     }
+<<<<<<< HEAD
+=======
+    public void drawDialogueScreen(){
+
+        // WINDOW (Cửa sổ)
+        int x = gp.tileSize*2;
+        int y = gp.tileSize/2;
+        int width = gp.screenWidth - gp.tileSize*4;
+        int height = gp.tileSize*4;
+
+        drawSubWindow(x, y, width, height);
+
+        g2.setFont(arial_28);
+        x += gp.tileSize/2;
+        y += gp.tileSize;
+
+        metrics = g2.getFontMetrics();
+        int lineWidth = 0;
+        int maxlineWidth = width - gp.tileSize;
+        int xfordrawString = x;
+        for(String line : currentDialogue.split(" ")){
+            lineWidth += metrics.stringWidth(line + " ");
+            
+            if(lineWidth <= maxlineWidth){
+                g2.drawString(line + " " , xfordrawString, y);
+                xfordrawString += metrics.stringWidth(line + " ");
+            }
+            else{
+                y += 40;
+                xfordrawString = x;
+                lineWidth = 0;
+                g2.drawString(line + " ", xfordrawString , y);
+
+                xfordrawString += metrics.stringWidth(line + " ");
+                lineWidth += metrics.stringWidth(line + " ");
+            }
+        }
+
+    }
+>>>>>>> 956c260dcd79f9c1a6f6f32eb38a6f17150238f3
     public void options_control(int frameX, int frameY){
         int textX;
         int textY;
 
-        //TTITLE
+        //TTITLE (Tiêu đề)
         String text = "Control";
         textX = getXforCenterText(text);
         textY = frameY + gp.tileSize;
@@ -459,7 +499,7 @@ public class UI {
         g2.drawString("X", textX, textY); textY += gp.tileSize;
         g2.drawString("P", textX, textY); textY += gp.tileSize;
 
-        // BACK
+        // BACK (Quay lại)
         textX = frameX + gp.tileSize;
         textY = frameY + gp.tileSize*9;
         g2.drawString("Back", textX, textY);
@@ -546,14 +586,14 @@ public class UI {
     }
     public void drawCharacterScreen(){
 
-        // CREATE A FRAME
+        // CREATE A FRAME (Tạo 1 khung hình)
         final int frameX = gp.tileSize*2;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize*5;
         final int frameHeight = gp.tileSize*8;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
-        // TEXT
+        // TEXT 
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(30F));;
 
@@ -638,28 +678,28 @@ public class UI {
     }
     public void drawInventory(){
 
-        // FRAME
+        // FRAME (Khung hình túi đồ)
         int frameX = gp.tileSize*12;
         int frameY = gp.tileSize;
         int frameHeight = gp.tileSize*5;
         int frameWidth = gp.tileSize*6;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
-        // SLOT
+        // SLOT (Slot đồ)
         final int slotXstart = frameX + 20;
         final int slotYstart = frameY + 20;
         int slotX = slotXstart;
         int slotY = slotYstart;
         int slotSize = gp.tileSize+3;
 
-        // CURSOR
+        // CURSOR (Con trỏ)
         int cursorX = slotXstart + (slotSize* slotCol);
         int cursorY = slotYstart + (slotSize* slotRow);
         int cursorWidth = gp.tileSize;
         int cursorHeight = gp.tileSize;
         g2.setColor(new Color(240,190,90));
         g2.fillRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
-        // DRAW PLAYER'S ITEMS
+        // DRAW PLAYER'S ITEMS (Vẽ vật phẩm)
         for(int i = 0; i < gp.player.inventory.size(); i++){
 
             g2.drawImage(gp.player.inventory.get(i).down1, slotX,slotY,null);
@@ -671,18 +711,18 @@ public class UI {
                 slotY += slotSize;
             }
         }
-        // DRAW CURSOR
+        // DRAW CURSOR (Vẽ con trỏ)
         g2.setColor(Color.white);
         g2.setStroke(new BasicStroke(3));
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
-        // DECRIPTION FRAME
+        // DECRIPTION FRAME (Khung mô tả)
         int dframeX = frameX;
         int dframeY = frameY + frameHeight;
         int dframeHeight = gp.tileSize*3;
         int dframeWidth = frameWidth;
 
-        // DRAW DECRIPTION TEXT
+        // DRAW DECRIPTION TEXT (Mô tả)
         int textX = dframeX + 20;
         int textY = dframeY + gp.tileSize;
         g2.setFont(g2.getFont().deriveFont(28F));
