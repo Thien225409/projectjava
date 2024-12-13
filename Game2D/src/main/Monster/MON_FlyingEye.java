@@ -96,7 +96,7 @@ public class MON_FlyingEye extends Entity{
         }
         
         spriteCounter ++;
-        if(spriteCounter > 6){
+        if(spriteCounter > 4){
             if(spriteNum == 1) spriteNum = 2;
             else if(spriteNum == 2) spriteNum = 3;
             else if(spriteNum == 3) spriteNum = 4;

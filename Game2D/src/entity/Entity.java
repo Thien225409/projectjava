@@ -13,7 +13,7 @@ import main.UtilityTool;
 public class Entity {
 
     GamePanel gp;
-    public BufferedImage up1 , up2 ,up3, up4,up5,up6,up7,up8,up9
+    public BufferedImage up1 , up2 ,up3, up4,up5,up6,up7,up8,up9,
     down1 , down2 ,down3 ,down4,down5,down6,down7,down8,down9,
     right1 , right2 ,right3 ,right4,right5,right6,right7,right8,right9,
     left1 , left2 ,left3 ,left4,left5,left6,left7,left8,left9,
@@ -189,18 +189,18 @@ public class Entity {
             int damage = attack - gp.player.defense;
             if(damage < 0) damage = 0;
             gp.player.life -= damage;
-            if(direction == "right"){
-                gp.player.direction = "left";
-            }
-            if(direction == "left"){
-                gp.player.direction = "right";
-            }
-            if(direction == "up"){
-                gp.player.direction = "down";
-            }
-            if(direction == "down"){
-                gp.player.direction = "up";
-            }
+            // if(direction == "right"){
+            //     gp.player.direction = "left";
+            // }
+            // if(direction == "left"){
+            //     gp.player.direction = "right";
+            // }
+            // if(direction == "up"){
+            //     gp.player.direction = "down";
+            // }
+            // if(direction == "down"){
+            //     gp.player.direction = "up";
+            // }
             gp.player.invincible = true;
         }
     }

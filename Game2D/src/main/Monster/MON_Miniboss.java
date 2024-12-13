@@ -81,7 +81,6 @@ public class MON_Miniboss extends Entity{
 	    	
 	        die = setup("/monster/miniboss_died",gp.tileSize*2,gp.tileSize);
 	    }
-	    
 	    public void getAttackImage() {
 	    	attackLeft1 = setup("/monster/miniboss_attack_L1", gp.tileSize, gp.tileSize);
 	    	attackLeft2 = setup("/monster/miniboss_attack_L2", gp.tileSize, gp.tileSize);
@@ -145,7 +144,7 @@ public class MON_Miniboss extends Entity{
 	        }
 
 	        spriteCounter ++;
-            if(spriteCounter > 14){
+            if(spriteCounter > 5){
                 if(spriteNum == 1) spriteNum = 2;
                 else if(spriteNum == 2) spriteNum = 3;
                 else if(spriteNum == 3) spriteNum = 4;

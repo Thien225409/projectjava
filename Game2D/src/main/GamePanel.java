@@ -48,14 +48,14 @@ public class GamePanel extends JPanel implements Runnable {
     public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
-
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
+    Thread gameThread;
+    Config config = new Config(this);
 
     // EVENT HANDLER
     public EventHandler eHandler = new EventHandler(this);
-    Thread gameThread;
 
     //ENTITY AND OBJECT
     public Player player = new Player(this , keyH);
@@ -92,7 +92,9 @@ public class GamePanel extends JPanel implements Runnable {
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
 
-        // setFullScreen();
+        if(fullScreenOn == true){
+            setFullScreen();
+        }
     }
     public void setFullScreen(){
 
