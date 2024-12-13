@@ -75,34 +75,30 @@ public class MON_Ghost extends Entity{
         setAction();
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
         if(contactPlayer == true){
-            if(gp.player.invincible == false){
-                // We can give damage
-                gp.player.life -= 1;
-                gp.player.invincible = true;
-            }
-        }
+			damagePlayer(attack);
+		}
         switch (direction) {
-        case "up": 
-        	if(worldY > 0 * gp.tileSize && worldY < 50* gp.tileSize) {
-        		worldY -= speed ;           		
-        	}         	     	
-        	break;
-        case "down": 
-        	if(worldY < 50* gp.tileSize && worldY > 0* gp.tileSize) {
-        		worldY += speed; 
-        	}
-        	break;
-        case "right": 
-        	if(worldX < 70* gp.tileSize && worldX > 0* gp.tileSize) {
-        		worldX += speed; 
-        	}
-        	break;
-        case "left": 
-        	if(worldX > 0* gp.tileSize && worldX < 70* gp.tileSize) {
-        		worldX -= speed;
-        	}  
-        	break;
-        default: break;
+            case "up": 
+                if(worldY > 0 * gp.tileSize && worldY < 50* gp.tileSize) {
+                	worldY -= speed ;           		
+                }         	     	
+                break;
+            case "down": 
+                if(worldY < 50* gp.tileSize && worldY > 0* gp.tileSize) {
+                	worldY += speed; 
+                }
+                break;
+            case "right":
+                if(worldX < 70* gp.tileSize && worldX > 0* gp.tileSize) {
+                	worldX += speed; 
+                }
+                break;
+            case "left":
+                if(worldX > 0* gp.tileSize && worldX < 70* gp.tileSize) {
+                	worldX -= speed;
+                }  
+                break;
+            default: break;
         }
         
         spriteCounter ++;
@@ -124,6 +120,17 @@ public class MON_Ghost extends Entity{
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        int xDistance = Math.abs(worldX - gp.player.worldX);
+        int yDistance = Math.abs(worldY - gp.player.worldY);
+        int tileDistance = (xDistance + yDistance)/gp.tileSize;
+
+        if(onPath == false && tileDistance < 10){
+            
+            onPath = true;
+        }
+        if(onPath == true && tileDistance > 20){
+            onPath = false;
         }
     }
     
@@ -222,32 +229,32 @@ public class MON_Ghost extends Entity{
     }
 
     public void setAction(){
-        actionLockCounter ++;
-        if(actionLockCounter == 120){
-
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;// random a number from 1 to 100
-
-            if(i <= 25 ){
-                direction = "up";
-            }
-            if(i > 25 && i <= 50){
-                direction = "down";
-            }
-            if(i > 50 && i <= 75){
-                direction = "left";
-            }
-            if(i > 75){
-                direction = "right";
-            }
-
-            actionLockCounter = 0;
+        if(onPath == true){
+            int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
+            searchPath(goalCol, goalRow);
         }
-    }
-    public void damageReaction(){
+        else{
+            actionLockCounter ++;
+            if(actionLockCounter == 120){
+                Random random = new Random();
+                int i = random.nextInt(100) + 1;// random a number from 1 to 100
 
-        actionLockCounter = 0;
-        direction = gp.player.direction;
+                if(i <= 25 ){
+                    direction = "up";
+                }
+                if(i > 25 && i <= 50){
+                    direction = "down";
+                }
+                if(i > 50 && i <= 75){
+                    direction = "left";
+                }
+                if(i > 75){
+                    direction = "right";
+                }
+                actionLockCounter = 0;
+            }
+        }
     }
     public void checkDrop(){
         

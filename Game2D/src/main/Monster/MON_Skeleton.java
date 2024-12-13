@@ -52,8 +52,21 @@ public class MON_Skeleton extends Entity{
     }
 
     public void setAction(){
-        actionLockCounter ++;
-        if(actionLockCounter == 120){
+        if(onPath == true){
+            int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
+            searchPath(goalCol, goalRow);
+
+            int i = new Random().nextInt(100) + 1;
+            if(i > 90 && projectile.alive == false && shotAvailableCounter == 30){
+                projectile.set(worldX, worldY, direction, true, this);
+                gp.projectileList.add(projectile);
+                shotAvailableCounter = 0;
+            }
+        }
+        else{
+            actionLockCounter ++;
+            if(actionLockCounter == 120){
 
             Random random = new Random();
             int i = random.nextInt(100) + 1;// random a number from 1 to 100
@@ -72,20 +85,8 @@ public class MON_Skeleton extends Entity{
             }
 
             actionLockCounter = 0;
+            }
         }
-         int i = new Random().nextInt(100) + 1;
-        if(i > 90 && projectile.alive == false && shotAvailableCounter == 30){
-        	projectile.set(worldX, worldY, direction, true, this);
-        	gp.projectileList.add(projectile);
-        	shotAvailableCounter = 0;
-        }
-    }
-
-    public void damageReaction(){
-
-        actionLockCounter = 0;
-        direction = gp.player.direction;
-        //TODO: Setup Skeleton AI
     }
     public void checkDrop(){
         

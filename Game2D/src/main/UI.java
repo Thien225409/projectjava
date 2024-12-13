@@ -435,10 +435,7 @@ public class UI {
             }
         }
     }
-<<<<<<< HEAD
-=======
     public void drawDialogueScreen(){
-
         // WINDOW (Cửa sổ)
         int x = gp.tileSize*2;
         int y = gp.tileSize/2;
@@ -474,7 +471,6 @@ public class UI {
         }
 
     }
->>>>>>> 956c260dcd79f9c1a6f6f32eb38a6f17150238f3
     public void options_control(int frameX, int frameY){
         int textX;
         int textY;
@@ -543,43 +539,6 @@ public class UI {
             if(gp.keyH.enterPressed == true){
                 subState = 0;
                 commandNum = 4;
-            }
-        }
-
-    }
-    public void drawDialogueScreen(){
-
-        // WINDOW
-        int x = gp.tileSize*2;
-        int y = gp.tileSize/2;
-        int width = gp.screenWidth - gp.tileSize*4;
-        int height = gp.tileSize*4;
-
-        drawSubWindow(x, y, width, height);
-
-        g2.setFont(arial_28);
-        x += gp.tileSize/2;
-        y += gp.tileSize;
-
-        metrics = g2.getFontMetrics();
-        int lineWidth = 0;
-        int maxlineWidth = width - gp.tileSize;
-        int xfordrawString = x;
-        for(String line : currentDialogue.split(" ")){
-            lineWidth += metrics.stringWidth(line + " ");
-            
-            if(lineWidth <= maxlineWidth){
-                g2.drawString(line + " " , xfordrawString, y);
-                xfordrawString += metrics.stringWidth(line + " ");
-            }
-            else{
-                y += 40;
-                xfordrawString = x;
-                lineWidth = 0;
-                g2.drawString(line + " ", xfordrawString , y);
-
-                xfordrawString += metrics.stringWidth(line + " ");
-                lineWidth += metrics.stringWidth(line + " ");
             }
         }
 

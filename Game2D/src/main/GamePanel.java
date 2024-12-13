@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.JPanel;
+
+import AI.PathFinder;
 import entity.Entity;
 import entity.Player;
 import tile.TileManager;
@@ -53,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
     Thread gameThread;
     Config config = new Config(this);
+    public PathFinder pFinder = new PathFinder(this);
 
     // EVENT HANDLER (Xử lý sự kiện)
     public EventHandler eHandler = new EventHandler(this);

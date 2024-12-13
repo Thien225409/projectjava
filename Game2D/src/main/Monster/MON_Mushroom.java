@@ -14,7 +14,7 @@ public class MON_Mushroom extends Entity{
         super(gp);
 
         this.gp = gp;
-        type = 2;
+        type = type_monster;
         name = "Mushroom";
         speed = 1;
         maxLife = 3;
@@ -58,40 +58,30 @@ public class MON_Mushroom extends Entity{
     public void update(){
 
         setAction();
-        collisionOn = false;
-        gp.cChecker.checkTile(this);
-        gp.cChecker.checkObject(this, false);
-        gp.cChecker.checkEntity(this, gp.npc);
-        gp.cChecker.checkEntity(this, gp.monster);
-
-        boolean contactPlayer = gp.cChecker.checkPlayer(this);
-        if(this.type == 2 && contactPlayer == true){
-        	damagePlayer(attack);
-        }
-        
+        checkCollison();
         if(collisionOn == false){
         	switch (direction) {
-            case "up": 
+            case "up":
             	if(1*gp.tileSize <= worldY && worldY <= 10*gp.tileSize) {
             		worldY -= speed ;           		
             	}         	     	
             	break;
-            case "down": 
+            case "down":
             	if(1*gp.tileSize <= worldY && worldY <= 10*gp.tileSize) {
             		worldY += speed; 
             	}
             	break;
-            case "right": 
+            case "right":
             	if(2*gp.tileSize <= worldX && worldX <= 21*gp.tileSize) {
             		worldX += speed; 
             	}
             	break;
-            case "left": 
+            case "left":
             	if(2*gp.tileSize <= worldX && worldX <= 21*gp.tileSize) {
             		worldX -= speed;
             	}  
             	break;
-            default: break;
+                default: break;
             }
         }
 
@@ -112,6 +102,17 @@ public class MON_Mushroom extends Entity{
         }
         if(shotAvailableCounter < 30) {
         	shotAvailableCounter ++;
+        }
+        int xDistance = Math.abs(worldX - gp.player.worldX);
+        int yDistance = Math.abs(worldY - gp.player.worldY);
+        int tileDistance = (xDistance + yDistance)/gp.tileSize;
+
+        if(onPath == false && tileDistance < 10){
+            
+            onPath = true;
+        }
+        if(onPath == true && tileDistance > 20){
+            onPath = false;
         }
     }
     
@@ -190,12 +191,23 @@ public class MON_Mushroom extends Entity{
     }
 
     public void setAction(){
-        actionLockCounter ++;
-        if(actionLockCounter == 120){
+        if(onPath == true){
+            int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
+            searchPath(goalCol, goalRow);
 
+            int i = new Random().nextInt(100) + 1;
+            if(i > 90 && projectile.alive == false && shotAvailableCounter == 30){
+                projectile.set(worldX, worldY, direction, true, this);
+                gp.projectileList.add(projectile);
+                shotAvailableCounter = 0;
+            }
+        }
+        else{
+            actionLockCounter ++;
+            if(actionLockCounter == 120){
             Random random = new Random();
             int i = random.nextInt(100) + 1;// random a number from 1 to 100
-
             if(i <= 25 ){
                 direction = "up";
             }
@@ -210,26 +222,7 @@ public class MON_Mushroom extends Entity{
             }
 
             actionLockCounter = 0;
-            
+            }
         }
-        
-//        if(attacking == false) {
-//        	checkAttackOrNot(30, gp.tileSize * 4, gp.tileSize * 2);
-//        }
-        
-          int i = new Random().nextInt(100) + 1;
-          if(i > 90 && projectile.alive == false && shotAvailableCounter == 30){
-        	  
-              projectile.set(worldX, worldY, direction, true, this);
-        	  gp.projectileList.add(projectile);
-        	  shotAvailableCounter = 0;
-          }
-    }
-
-    public void damageReaction(){
-
-        actionLockCounter = 0;
-        direction = gp.player.direction;
-        //TODO: Setup Mushroom AI
     }
 }

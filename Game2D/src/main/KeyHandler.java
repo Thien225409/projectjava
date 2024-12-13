@@ -21,23 +21,23 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
 
-        // TITLE STATE (Trạng thái menu game)
+        // TITLE STATE
         if(gp.gameState == gp.titleState){
             titleState(code);
         }
-        // PLAY STATE (Trạng thái đang chơi)
+        // PLAY STATE
         else if(gp.gameState == gp.playState){
             playState(code);
         }
-        // OPTIONS STATE (Trạng thái tùy chọn, cài đặt)
+        // OPTIONS STATE
         else if(gp.gameState == gp.optionsState){
             optionsState(code);
         }
-        // DIALOGUE STATE (Trạng thái đang có thoại)
+        // DIALOGUE STATE
         else if(gp.gameState == gp.dialogueState){
             dialogueState(code);
         }
-        // CHARACTER STATE (Trạng thái mở bảng thuộc tính nhân vật)
+        // CHARACTER STATE
         else if(gp.gameState == gp.characterState){
             characterState(code);
         }
@@ -69,7 +69,7 @@ public class KeyHandler implements KeyListener {
                 gp.playMusic(0);
             }
             if(gp.ui.commandNum == 1){
-                // ADD LOAD GAME 
+                // ADD LOAD GAME
             }
             if(gp.ui.commandNum == 2){
                 System.exit(0);
@@ -212,6 +212,7 @@ public class KeyHandler implements KeyListener {
             // RESTART
             else if(gp.ui.commandNum == 1){
                 gp.gameState = gp.titleState;
+                gp.ui.commandNum = 0;
                 gp.restart();
             }
         }
