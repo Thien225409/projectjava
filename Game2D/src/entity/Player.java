@@ -51,8 +51,8 @@ public class Player extends Entity {
     }
     
     public void setDefaultValues(){
-        worldX = gp.tileSize * 3;
-        worldY = gp.tileSize * 16;
+        worldX = gp.tileSize * 23;
+        worldY = gp.tileSize * 21;
         speed = 3;
         direction = "down";
 
@@ -69,8 +69,20 @@ public class Player extends Entity {
         attack = strength;
         defense = dexterity;
     }
+    public void setDefaultPositions(){
+        
+        worldX = gp.tileSize * 23;
+        worldY = gp.tileSize * 21;
+        direction = "down";
+
+    }
+    public void restoreLife(){
+        life = maxLife;
+        invincible = false;
+    }
     public void setItems(){
 
+        inventory.clear();
         inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_HP(gp));
         inventory.add(new OBJ_HP_half(gp));
@@ -279,6 +291,9 @@ public class Player extends Entity {
             }
         }
         if(life > maxLife) life = maxLife;
+        if(life <= 0){
+            gp.gameState = gp.gameOverState;
+        }
     }
 
     public void attacking(){
