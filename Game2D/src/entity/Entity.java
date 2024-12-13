@@ -13,17 +13,19 @@ import main.UtilityTool;
 public class Entity {
 
     GamePanel gp;
-    public BufferedImage up1 , up2 ,up3, up4,up5,up6,up7,up8,
-    down1 , down2 ,down3 ,down4,down5,down6,down7,down8,
-    right1 , right2 ,right3 ,right4,right5,right6,right7,right8,
-    left1 , left2 ,left3 ,left4,left5,left6,left7,left8;
+    public BufferedImage up1 , up2 ,up3, up4,up5,up6,up7,up8,up9
+    down1 , down2 ,down3 ,down4,down5,down6,down7,down8,down9,
+    right1 , right2 ,right3 ,right4,right5,right6,right7,right8,right9,
+    left1 , left2 ,left3 ,left4,left5,left6,left7,left8,left9,
+    idleL1, idleL2, idleL3, idleL4, idleL5, idleL6,
+    idleR1, idleR2, idleR3, idleR4, idleR5, idleR6;
 
     public BufferedImage die;
 
-    public BufferedImage attackUp1, attackUp2, attackUp3, attackUp4, attackUp5,attackUp6,
-    attackDown1, attackDown2, attackDown3, attackDown4, attackDown5,attackDown6,
-    attackLeft1, attackLeft2, attackLeft3, attackLeft4, attackLeft5,attackLeft6,
-    attackRight1, attackRight2, attackRight3, attackRight4, attackRight5,attackRight6;
+    public BufferedImage attackUp1, attackUp2, attackUp3, attackUp4, attackUp5,attackUp6,attackUp7, attackUp8, attackUp9,
+    attackDown1, attackDown2, attackDown3, attackDown4, attackDown5,attackDown6,attackDown7, attackDown8,attackDown9,
+    attackLeft1, attackLeft2, attackLeft3, attackLeft4, attackLeft5,attackLeft6,attackLeft7,attackLeft8, attackLeft9,
+    attackRight1, attackRight2, attackRight3, attackRight4, attackRight5,attackRight6,attackRight7, attackRight8, attackRight9;
 
     public BufferedImage defendLeft1, defendLeft2, defendLeft3, defendLeft4, defendLeft5, defendLeft6,
     defendRight1, defendRight2, defendRight3, defendRight4, defendRight5, defendRight6;
@@ -70,6 +72,16 @@ public class Entity {
 
     //Lớp attackMonster
     public Projectile projectile;
+
+    //Kiểm tra khoảng cách tấn công của monster
+    public int getXdistance(Entity target) {
+    	int xDistance = Math.abs(worldX - target.worldX);
+    	return xDistance;
+    }
+    public int getYdistance(Entity target) {
+    	int yDistance = Math.abs(worldY - target.worldY);
+    	return yDistance;
+    }   
 
     // ITEM ATTRIBUTES
     public int value;
@@ -144,6 +156,31 @@ public class Entity {
         if(shotAvailableCounter < 30) {
         	shotAvailableCounter ++;
         }
+    }
+     
+     public void checkAttackOrNot(int a, int b) {
+    	boolean targetInRange = false;
+    	int xDis = getXdistance(gp.player);
+    	int yDis = getYdistance(gp.player);
+    	
+    	switch(direction) {
+    	
+    	case "left":
+    		if(gp.player.worldX <= worldX && xDis < a && yDis < b) {
+    			targetInRange = true;
+    		}  		
+    		break;
+    	case "right":
+    		
+    		if(gp.player.worldX > worldX && xDis < a && yDis < b) {
+    			targetInRange = true;
+    		}
+    		break;
+    	}
+    	
+    	if(targetInRange == true) {
+    		attacking = true;
+    	}
     }
 
     public void damagePlayer(int attack) {
