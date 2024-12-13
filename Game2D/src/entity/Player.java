@@ -213,7 +213,7 @@ public class Player extends Entity {
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
 
-            // CHECK EVENT
+            // KIỂM TRA SỰ KIỆN
             gp.eHandler.checkEvent();
 
             if(collisionOn == false && keyH.enterPressed == false){
