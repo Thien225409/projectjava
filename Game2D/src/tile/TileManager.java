@@ -20,12 +20,10 @@ public class TileManager {
     public TileManager(GamePanel gp){
 
         this.gp = gp;
-        // TODO: Khi thay đổi map thì phải thay đổi số lượng Tile
         tile = new Tile[100];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        // TODO: Thay đổi map ở đây!
         loadMap("/res/maps/world_01.txt");
     }
     public void getTileImage(){

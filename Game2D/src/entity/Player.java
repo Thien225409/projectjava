@@ -51,8 +51,8 @@ public class Player extends Entity {
     }
     
     public void setDefaultValues(){
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
+        worldX = gp.tileSize * 3;
+        worldY = gp.tileSize * 16;
         speed = 3;
         direction = "down";
 
@@ -564,9 +564,8 @@ public class Player extends Entity {
                 break;
     
         }
-        
+        // KHI NHẬN SÁT THƯƠNG THÌ GIƠ KHIÊN
         if(invincible == true){
-            // TODO:Vẽ cái gì đó khi player bị nhận sát thương
             switch (direction) {
                 case "up":
                     if(invincibleCounter < 5) image = defendRight1;

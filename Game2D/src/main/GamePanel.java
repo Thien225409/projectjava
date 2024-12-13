@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,7 +20,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int scale = 3;
     public final int tileSize = originalTileSize * scale; //48
 
-    public final int maxScreenCol = 16;
+    public final int maxScreenCol = 20;
     public final int maxScreenRow = 12;
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
@@ -29,6 +30,12 @@ public class GamePanel extends JPanel implements Runnable {
     public final int maxWorldRow = 51;
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
+
+    //FULL SCREEN
+    int screenWidth2 = screenWidth;
+    int screenHeight2 = screenHeight;
+    BufferedImage tempScreen;
+    Graphics2D g2;    
 
     //FPS
     int FPS = 60;
@@ -80,6 +87,8 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setNPC();
         aSetter.setMonster();
 
+        tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+        g2 = (Graphics2D) tempScreen.getGraphics();
     }
 
     public void startGameThread(){
@@ -92,7 +101,6 @@ public class GamePanel extends JPanel implements Runnable {
         double drawInterval = 1000000000/ FPS;
         double nextDrawTime = System.nanoTime() + drawInterval;
         while(gameThread != null){
-            //System.out.println("The game loop is running");
             //UPDATE ifo character
             update();
             //DRAW with updated infor
@@ -121,12 +129,6 @@ public class GamePanel extends JPanel implements Runnable {
         if(gameState == playState){
             // PLAYER
             player.update();
-            // NPC
-            for(int i = 0; i < npc.length; i++){
-                if(npc[i] != null){
-                    npc[i].update();
-                }
-            }
             // MONSTER
             for(int i = 0; i < monster.length; i++){
                 if(monster[i] != null){
