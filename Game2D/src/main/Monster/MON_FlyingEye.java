@@ -66,7 +66,7 @@ public class MON_FlyingEye extends Entity{
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
         if(contactPlayer == true){
             if(gp.player.invincible == false){
-                // We can give damage
+                // Người chơi có thể chịu dmg.
                 gp.player.life -= 1;
                 gp.player.invincible = true;
             }
@@ -156,7 +156,7 @@ public class MON_FlyingEye extends Entity{
                 break;
         }
 
-        // Monster HP bar
+        // Monster HP bar (Thanh HP của quái)
 
         if(hpBarOn == true && type == 2){
 
@@ -209,7 +209,7 @@ public class MON_FlyingEye extends Entity{
         if(actionLockCounter == 120){
 
             Random random = new Random();
-            int i = random.nextInt(100) + 1;// random a number from 1 to 100
+            int i = random.nextInt(100) + 1; // random a number from 1 to 100 (ngẫu nhiên từ 1 đến 100)
 
             if(i <= 25 ){
                 direction = "up";
