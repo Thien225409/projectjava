@@ -56,7 +56,7 @@ public class Player extends Entity {
         speed = 3;
         direction = "down";
 
-        // PLAYER STATUS
+        // PLAYER STATUS (TRẠNG THÁI NHÂN VẬT)
         level = 1;
         maxLife = 6;
         life = maxLife;// 1 life = 1/2 heart
@@ -197,19 +197,19 @@ public class Player extends Entity {
                 direction = "left";
             }
 
-            //CHECK TILE COLLISION
+            //CHECK TILE COLLISION (KIỂM TRA VA CHẠM TILE)
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
-            //CHECK OBJECT COLLISION
+            //CHECK OBJECT COLLISION (KIỂM TRA VA CHẠM VẬT THỂ)
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
-            // CHECK NPC COLLISION
+            // CHECK NPC COLLISION (KIỂM TRA VA CHẠM NPC)
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
-            // CHECK MONSTER COLLISION
+            // CHECK MONSTER COLLISION (KIỂM TRA VA CHẠM QUÁI)
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             contactMonster(monsterIndex);
 
@@ -270,7 +270,7 @@ public class Player extends Entity {
             }
         }
 
-        // INVINCIBLE COUNTER
+        // INVINCIBLE COUNTER (Bộ đếm invincible)
         if(invincible == true){
             invincibleCounter ++;
             if(invincibleCounter > 60){
@@ -307,10 +307,10 @@ public class Player extends Entity {
                 case "up","right","up_right","down_right": worldX += attackArea.height; break;
                 case "down","left","down_left","up_left": worldX -= attackArea.width; break;
             }
-            // Attack area becomes solidArea
+            // Attack area becomes solidArea (chuyển vùng bị tấn công thành vùng rắn)
             solidArea.width = attackArea.width;
             solidArea.height = attackArea.height;
-            // Check monster collision with updated worldX, worldY and solidArea
+            // Check monster collision with updated worldX, worldY and solidArea (kiểm tra va chạm của quái với worldX, worldY và vùng rắn)
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             damageMonster(monsterIndex);
 
@@ -325,11 +325,11 @@ public class Player extends Entity {
                 case "left": worldX -= attackArea.width; break;
                 case "right": worldX += attackArea.width; break;
             }
-            // Attack area becomes solidArea
+            // Attack area becomes solidArea (chuyển vùng bị tấn công thành vùng rắn)
             solidArea.width = attackArea.width;
             solidArea.height = attackArea.height;
 
-            // Check monster collision with updated worldX, worldY and solidArea
+            // Check monster collision with updated worldX, worldY and solidArea (kiểm tra va chạm của quái với worldX, worldY và vùng rắn)
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             damageMonster(monsterIndex);
 
@@ -344,16 +344,16 @@ public class Player extends Entity {
                 case "left": worldX -= attackArea.width; break;
                 case "right": worldX += attackArea.width; break;
             }
-            // Attack area becomes solidArea
+            // Attack area becomes solidArea (chuyển vùng bị tấn công thành vùng rắn)
             solidArea.width = attackArea.width;
             solidArea.height = attackArea.height;
 
-            // Check monster collision with updated worldX, worldY and solidArea
+            // Check monster collision with updated worldX, worldY and solidArea (kiểm tra va chạm của quái với worldX, worldY và vùng rắn)
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             damageMonster(monsterIndex);
 
         }
-        // After checking restore data
+        // After checking restore data (Cập nhật dữ liệu sau khi kiểm tra)
         worldX = currentWorldX;
         worldY = currentWorldY;
         solidArea.width = solidAreaWidth;
@@ -369,7 +369,7 @@ public class Player extends Entity {
     public void pickUpObject(int i){
         if(i != 999){
 
-            // INVENTORY ITEMS
+            // INVENTORY ITEMS (TÚI ĐỒ)
             String text;
             if(inventory.size() != maxInventorySize){
 
