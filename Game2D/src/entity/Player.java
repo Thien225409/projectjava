@@ -10,6 +10,7 @@ import main.KeyHandler;
 import object.OBJ_EnergyDrink;
 import object.OBJ_HP;
 import object.OBJ_HP_half;
+import object.OBJ_Key;
 
 public class Player extends Entity {
 
@@ -83,6 +84,7 @@ public class Player extends Entity {
 
     public void setItems(){
         inventory.clear();
+        inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_HP(gp));
         inventory.add(new OBJ_HP_half(gp));
         inventory.add(new OBJ_EnergyDrink(gp));
@@ -382,19 +384,27 @@ public class Player extends Entity {
 
     public void pickUpObject(int i){
         if(i != 999){
+            if(gp.obj[i].type == type_obstacle){
 
-            // INVENTORY ITEMS (TÚI ĐỒ)
-            String text;
-            if(inventory.size() != maxInventorySize){
-                if(gp.obj[i].name == "Key") this.hasKey++;
-                inventory.add(gp.obj[i]);
-                text = "Got a " + gp.obj[i].name + "!";
+                if(keyH.enterPressed == true){
+                    attackCanceled = true;
+                    gp.obj[i].interact();
+                }
             }
             else{
-                text = "You cannot carry any more!";
+                // INVENTORY ITEMS (TÚI ĐỒ)
+                String text;
+                if(inventory.size() != maxInventorySize){
+                    if(gp.obj[i].name == "Key") this.hasKey++;
+                    inventory.add(gp.obj[i]);
+                    text = "Got a " + gp.obj[i].name + "!";
+                }
+                else{
+                    text = "You cannot carry any more!";
+                }
+                gp.ui.addMessage(text);
+                gp.obj[i] = null;
             }
-            gp.ui.addMessage(text);
-            gp.obj[i] = null;
         }
     }
     public void interactNPC(int i){
@@ -462,10 +472,11 @@ public class Player extends Entity {
         if(itemIndex < inventory.size()){
 
             Entity selectedItem = inventory.get(itemIndex);
-            if(selectedItem.type  == type_consumable || selectedItem.type  == type_rare){
+            if(selectedItem.type  == type_consumable){
                 //TODO: Viết code cho phần sử dụng vật phẩm
-                selectedItem.use(this);
-                inventory.remove(itemIndex);
+                if(selectedItem.use(this) == true){
+                    inventory.remove(itemIndex);
+                }
             }
         }
     }

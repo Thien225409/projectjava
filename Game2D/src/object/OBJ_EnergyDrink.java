@@ -16,11 +16,12 @@ public class OBJ_EnergyDrink extends Entity{
         down1 = setup("/objects/buff_attack", gp.tileSize, gp.tileSize);
         decription = "[" + name + "]\nDrink to increase " + value + "\nattack damage.";
     }
-    public void use(Entity entity){
+    public boolean use(Entity entity){
 
         gp.gameState = gp.playState;
         gp.ui.addMessage("You drink the " + name);
         gp.ui.addMessage("Your strength has been increased " + value + " damage.");
         entity.attack += value;
+        return true;
     }
 }

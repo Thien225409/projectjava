@@ -16,11 +16,12 @@ public class OBJ_HP_half extends Entity{
         down1 = setup("/objects/hp_half", gp.tileSize, gp.tileSize);
         decription = "[" + name + "]\nDrink to recover " + value + ".";
     }
-    public void use(Entity entity){
+    public boolean use(Entity entity){
 
         gp.gameState = gp.playState;
         gp.ui.addMessage("You drink the " + name);
         gp.ui.addMessage("Your life has been recovered by " + value + " half heart.");
         entity.life += value;
+        return true;
     }
 }

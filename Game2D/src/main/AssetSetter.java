@@ -10,6 +10,7 @@ import main.Monster.MON_Skeleton;
 import main.Monster.MON_Slime;
 import object.OBJ_Chest;
 import object.OBJ_Door;
+import object.OBJ_EnergyDrink;
 public class AssetSetter {
 
     GamePanel gp;
@@ -25,42 +26,42 @@ public class AssetSetter {
         gp.obj[i].worldY =  gp.tileSize *6;
 
         i++;
-        gp.obj[i] = new OBJ_Chest(gp);
+        gp.obj[i] = new OBJ_Chest(gp, new OBJ_EnergyDrink(gp));
         gp.obj[i].worldX =  gp.tileSize *43;
         gp.obj[i].worldY =  gp.tileSize *14;
 
         i++;
-        gp.obj[i] = new OBJ_Chest(gp);
+        gp.obj[i] = new OBJ_Chest(gp,new OBJ_EnergyDrink(gp));
         gp.obj[i].worldX =  gp.tileSize *65;
         gp.obj[i].worldY =  gp.tileSize *26;
 
         i++;
-        gp.obj[i] = new OBJ_Chest(gp);
+        gp.obj[i] = new OBJ_Chest(gp,new OBJ_EnergyDrink(gp));
         gp.obj[i].worldX =  gp.tileSize *67;
         gp.obj[i].worldY =  gp.tileSize *48;
 
         i++;
-        gp.obj[i] = new OBJ_Chest(gp);
+        gp.obj[i] = new OBJ_Chest(gp,new OBJ_EnergyDrink(gp));
         gp.obj[i].worldX =  gp.tileSize *21;
         gp.obj[i].worldY =  gp.tileSize *49;
 
         i++;
-        gp.obj[i] = new OBJ_Chest(gp);
+        gp.obj[i] = new OBJ_Chest(gp,new OBJ_EnergyDrink(gp));
         gp.obj[i].worldX =  gp.tileSize *3;
         gp.obj[i].worldY =  gp.tileSize *28;
 
         i++;
-        gp.obj[i] = new OBJ_Chest(gp);
+        gp.obj[i] = new OBJ_Chest(gp, new OBJ_EnergyDrink(gp));
         gp.obj[i].worldX =  gp.tileSize *45;
         gp.obj[i].worldY =  gp.tileSize *20;
 
         i++;
-        gp.obj[i] = new OBJ_Chest(gp);
+        gp.obj[i] = new OBJ_Chest(gp, new OBJ_EnergyDrink(gp));
         gp.obj[i].worldX =  gp.tileSize *35;
         gp.obj[i].worldY =  gp.tileSize *49;
 
         i++;
-        gp.obj[i] = new OBJ_Chest(gp);
+        gp.obj[i] = new OBJ_Chest(gp,new OBJ_EnergyDrink(gp));
         gp.obj[i].worldX =  gp.tileSize *4;
         gp.obj[i].worldY =  gp.tileSize *17;
     }

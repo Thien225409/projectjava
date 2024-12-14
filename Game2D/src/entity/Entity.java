@@ -102,11 +102,28 @@ public class Entity {
     public final int type_npc = 1;
     public final int type_monster = 2;
     public final int type_consumable = 3;
-    public final int type_rare = 4;
     public final int type_obstacle = 5;
 
     public Entity(GamePanel gp){
         this.gp = gp;
+    }
+    public int getLeftX(){
+        return worldX + solidArea.x;
+    }
+    public int getRightX(){
+        return worldX + solidArea.x + solidArea.width;
+    }
+    public int getTopY(){
+        return worldY +solidArea.y;
+    }
+    public int getBottomY(){
+        return worldY + solidArea.y + solidArea.height;
+    }
+    public int getCol(){
+        return (worldX + solidArea.x)/gp.tileSize;
+    }
+    public int getRow(){
+        return (worldY + solidArea.y)/gp.tileSize;
     }
     public void setAction() {}
     public void damageReaction(){
@@ -115,12 +132,19 @@ public class Entity {
         onPath = true;
     }
     public void speak() {}
-    public void use(Entity entity){}
+    public void interact(){}
+    public boolean use(Entity entity){return false;}
     public void checkDrop(){
         int i = new Random().nextInt(100) + 1;
         //SET THE MONSTER DROP
-        if(i < 50){
+        if(i < 25){
             dropItem(new OBJ_HP(gp));
+        }
+        if(i >= 25 && i < 50){
+            if(gp.player.hasKey == 6){
+                i = 80;
+            }
+            dropItem(new OBJ_Key(gp));
         }
         if(i >= 50 && i < 75){
             dropItem(new OBJ_HP_half(gp));
@@ -133,9 +157,6 @@ public class Entity {
 
         for(int i = 0; i < gp.obj.length; i++){
             if(gp.obj[i] == null){
-                if(gp.player.monsterKillCount == 10){
-                    droppedItem = new OBJ_Key(gp);
-                }
                 gp.obj[i] = droppedItem;
                 gp.obj[i].worldX =  worldX;
                 gp.obj[i].worldY = worldY;
@@ -429,5 +450,52 @@ public class Entity {
             // }
         }
 
+    }
+    public int getDetected(Entity user, Entity target[], String targetName){
+
+        int index = 999;
+
+        // Check the surrounding object 
+        int nextWorldX = user.getLeftX();
+        int nextWorldY = user.getTopY();
+
+        switch(user.direction){
+        case "up": nextWorldY = user.getTopY() - 1; break;
+        case "down": nextWorldY = user.getBottomY() + 1; break;
+        case "left": nextWorldX = user.getLeftX() - 1; break;
+        case "right": nextWorldX = user.getRightX() + 1; break;
+        case "up_right": 
+            nextWorldY = user.getTopY() - 1;
+            nextWorldX = user.getRightX() + 1;
+            break;
+        case "up_left": 
+            nextWorldY = user.getTopY() - 1;
+            nextWorldX = user.getLeftX() - 1;
+            break;
+        case "down_right":
+            nextWorldY = user.getBottomY() + 1;
+            nextWorldX = user.getRightX() + 1;
+            break;
+        case "down_left":
+            nextWorldY = user.getBottomY() + 1;
+            nextWorldX = user.getLeftX() - 1;
+            break;
+        }
+
+        int col = nextWorldX/gp.tileSize;
+        int row = nextWorldY/gp.tileSize;
+
+        for(int  i = 0; i < target.length; i++){
+            if(target[i] != null){
+                if(target[i].getCol() == col && target[i].getRow() == row
+                    && target[i].name.equals(targetName)){
+
+                    index = i;
+                    break;
+
+                }
+            }
+        }
+        return index;
     }
 }

@@ -9,18 +9,26 @@ public class OBJ_Key extends Entity {
         super(gp);
         this.gp = gp;
         name = "Key";
-        type = type_rare;
+        type = type_consumable;
         down1 = setup("/objects/key", gp.tileSize, gp.tileSize);
         decription = "[" + name + "]\nIt opens a door.";
     }
 
-    public void use(Entity entity){
+    public boolean use(Entity entity){
 
-        int npcIndex = gp.cChecker.checkEntity(gp.player, gp.npc);
-        if(npcIndex != 999 && gp.player.hasKey != 0){
-            gp.gameState = gp.playState;
-            gp.player.hasKey --;
-            gp.npc[npcIndex] = null;
+        gp.gameState = gp.dialogueState;
+
+        int objIndex = getDetected(entity, gp.obj, "Chest");
+
+        if(objIndex != 999){
+            gp.ui.currentDialogue = "You use the " + name + " and open the chest";
+            gp.obj[objIndex] = null;
+            return true;
         }
+        else{
+            gp.ui.currentDialogue = "What are you doing?";
+            return false;
+        }
+
     }
 }
