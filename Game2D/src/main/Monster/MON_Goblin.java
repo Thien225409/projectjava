@@ -74,22 +74,22 @@ public class MON_Goblin extends Entity{
         if(collisionOn == false) {
         	switch (direction) {
                 case "up":
-                    if(15*gp.tileSize < worldY && worldY < 50*gp.tileSize) {
+                    if(29*gp.tileSize < worldY && worldY < 50*gp.tileSize) {
                     	worldY -= speed ;           		
                     }         	     	
                     break;
                 case "down":
-                    if(15*gp.tileSize < worldY && worldY < 50*gp.tileSize) {
+                    if(29*gp.tileSize < worldY && worldY < 50*gp.tileSize) {
                     	worldY += speed; 
                     }
                     break;
                 case "right":
-                    if(0*gp.tileSize < worldX && worldX < 70*gp.tileSize) {
+                    if(50*gp.tileSize < worldX && worldX < 70*gp.tileSize) {
                     	worldX += speed; 
                     }
                     break;
                 case "left":
-                    if(0*gp.tileSize < worldX && worldX < 70*gp.tileSize) {
+                    if(50*gp.tileSize < worldX && worldX < 70*gp.tileSize) {
                     	worldX -= speed;
                     }  
                     break;

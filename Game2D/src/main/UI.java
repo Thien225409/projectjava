@@ -567,12 +567,6 @@ public class UI {
         g2.drawString("Life", textX, textY);
 
         textY += lineHeight;
-        g2.drawString("Strength", textX, textY);
-        
-        textY += lineHeight;
-        g2.drawString("Dexterity", textX, textY);
-
-        textY += lineHeight;
         g2.drawString("Attack", textX, textY);
 
         textY += lineHeight;
@@ -596,16 +590,6 @@ public class UI {
                 
         textY += lineHeight;
         value = String.valueOf(gp.player.life + "/" + gp.player.maxLife);
-        textX = getXforAlignToRightText(value, tailX);
-        g2.drawString(value, textX, textY);
-        
-        textY += lineHeight;
-        value = String.valueOf(gp.player.strength);
-        textX = getXforAlignToRightText(value, tailX);
-        g2.drawString(value, textX, textY);
-        
-        textY += lineHeight;
-        value = String.valueOf(gp.player.dexterity);
         textX = getXforAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
         

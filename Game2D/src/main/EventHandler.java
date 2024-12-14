@@ -44,13 +44,9 @@ public class EventHandler {
             canTouchEvent = true;
         }
 
-        if(canTouchEvent == true){
-            if(hit(6, 10, "any")){damagePit(6, 10,gp.dialogueState);}// TODO: Các địa điểm bị dính sát thương
-            if(hit(10,10,"any")){damagePit(10, 10,gp.dialogueState);}
-        }
-
-        if(hit(21, 6, "any") == true){teleport(gp.dialogueState);}// TODO: Vị trí để teleport, cửa sẽ được đặt ở đây
-
+        if(hit(21, 6, "any") == true){teleport(gp.dialogueState, 51, 4);}
+        // TODO: Vị trí để teleport, cửa sẽ được đặt ở đây
+        if(hit(51, 1, "any") == true){teleport(gp.dialogueState,21, 1);}
     }
 
     public boolean hit(int col, int row, String reqDirection){
@@ -78,23 +74,13 @@ public class EventHandler {
         
         return hit;
     }
-    public void damagePit(int col, int row, int gameState){
-
-        gp.gameState = gameState;
-        gp.ui.currentDialogue = "You fall into a pit";
-        gp.player.life -= 1;
-        // eventRect[col][row].eventDone = true;
-        
-        canTouchEvent = false;
-    }
-
-    public void teleport(int gameState){
+    public void teleport(int gameState, int col_position, int row_position){
 
         gp.gameState = gameState;
         gp.ui.currentDialogue = "Teleport!";
-        gp.player.worldX = 52*gp.tileSize;
+        gp.player.worldX = col_position*gp.tileSize;
         // TODO: Ô (51,4) sẽ có một cửa để teleport ra
-        gp.player.worldY = 4*gp.tileSize;
+        gp.player.worldY = row_position*gp.tileSize;
     }
 
 }

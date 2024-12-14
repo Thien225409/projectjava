@@ -1,11 +1,7 @@
 package entity;
 
 import java.awt.Rectangle;
-import java.util.Random;
-
 import main.GamePanel;
-
-
 public class NPC_OldMan extends Entity {
 
     public NPC_OldMan(GamePanel gp){
@@ -26,54 +22,28 @@ public class NPC_OldMan extends Entity {
         setDialogue();
     }
     public void getImage(){
-        down1 = setup("/npc/oldman_down_1", gp.tileSize, gp.tileSize);
+        down1 = setup("/npc/01_Demon Door_NPC", gp.tileSize, gp.tileSize);
     }
     public void setDialogue(){
-
+        
         dialogues[0] = "Hello, lad.";
         dialogues[1] = "So you've come to this island to find the treasure?";
         dialogues[2] = "I used to be a great wirazd but now... I'm a bit too old for taking an adventure. Chúng tôi là biệt đội giải cứu thế giới.";
-        dialogues[3] = "Well, good luck on you.";
-        
+        dialogues[3] = "Hãy tiêu diệt thêm quái để nhận được chìa khóa, good luck on you.";
     }
-    public void setAction(){
-
-        if(onPath == true){
-            int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
-            int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
-            searchPath(goalCol, goalRow);
-        }
-        else{
-            actionLockCounter ++;
-            if(actionLockCounter == 120){
-
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;// random a number from 1 to 100
-
-            if(i <= 25 ){
-                direction = "up";
-            }
-            if(i > 25 && i <= 50){
-                direction = "down";
-            }
-            if(i > 50 && i <= 75){
-                direction = "left";
-            }
-            if(i > 75){
-                direction = "right";
-            }
-
-            actionLockCounter = 0;
-            }
-        }
-    }
+    
     public void speak(){
+        if(gp.player.hasKey >= 1){
+            dialogues[0] = "Hello, lad.";
+            dialogues[1] = "Oh, thanh kiếm trên tay cậu trông cũng sắc bén đấy!";
+            dialogues[2] = "Võ công của cậu quả thật rất đáng nể.";
+            dialogues[3] = "Giờ hãy đưa tôi chìa khóa mà cậu đang cầm.";
+            dialogues[4] = "Trong kia là một con yêu quái đã làm loạn ở vùng này rất lâu, chúc cậu may mắn!.";
+        }
         if(dialogues[dialogueIndex] == null){
             dialogueIndex = 0;
         }
         gp.ui.currentDialogue = dialogues[dialogueIndex];
         dialogueIndex ++;
-
-        onPath = true;
     }
 }

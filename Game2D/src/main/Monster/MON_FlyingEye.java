@@ -66,22 +66,22 @@ public class MON_FlyingEye extends Entity{
         if(collisionOn == false){
             switch (direction) {
                 case "up": 
-                    if(0*gp.tileSize < worldY && worldY <= 14*gp.tileSize) {
+                    if(18*gp.tileSize < worldY && worldY <= 35*gp.tileSize) {
                     	worldY -= speed ;           		
                     }         	     	
                     break;
                 case "down":  
-                    if(0*gp.tileSize <= worldY && worldY <= 14*gp.tileSize) {
+                    if(18*gp.tileSize <= worldY && worldY <= 35*gp.tileSize) {
                     	worldY += speed; 
                     }
                     break;
                 case "right":
-                    if(0*gp.tileSize <= worldX && worldX <= 24*gp.tileSize) {
+                    if(50*gp.tileSize <= worldX && worldX <= 68*gp.tileSize) {
                     	worldX += speed; 
                     }
                     break;
                 case "left":
-                    if(4*gp.tileSize <= worldX && worldX <= 24*gp.tileSize) {
+                    if(50*gp.tileSize <= worldX && worldX <= 68*gp.tileSize) {
                     	worldX -= speed;
                     }  
                     break;

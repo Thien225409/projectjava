@@ -10,7 +10,6 @@ import main.KeyHandler;
 import object.OBJ_EnergyDrink;
 import object.OBJ_HP;
 import object.OBJ_HP_half;
-import object.OBJ_Key;
 
 public class Player extends Entity {
 
@@ -18,11 +17,13 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    // public int hasKey = 0;
+    public int hasKey = 0;
+    public int monsterKillCount = 0;
     public int standCounter = 0;
     public boolean attackCanceled = false;
+
     public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int maxInventorySize = 10;
+    public final int maxInventorySize = 20;
 
     public Player(GamePanel gp, KeyHandler keyH) {
 
@@ -60,30 +61,28 @@ public class Player extends Entity {
         level = 1;
         maxLife = 6;
         life = maxLife;// 1 life = 1/2 heart
-        strength = 1; // Càng nhiều sức mạnh càng nhiều sát thương
-        dexterity = 1; // Càng ít khéo léo thì càng nhận nhiều sát thương
+        monsterKillCount = 0;
+        hasKey = 0;
         exp = 0;
         nextLevelExp = 5;
         attackValue = 1;
         defenseValue = 1;
-        attack = strength;
-        defense = dexterity;
+        attack = 1;
+        defense = 1;
     }
     public void setDefaultPositions(){
         
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
         direction = "down";
-
     }
     public void restoreLife(){
         life = maxLife;
         invincible = false;
     }
-    public void setItems(){
 
+    public void setItems(){
         inventory.clear();
-        inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_HP(gp));
         inventory.add(new OBJ_HP_half(gp));
         inventory.add(new OBJ_EnergyDrink(gp));
@@ -387,7 +386,7 @@ public class Player extends Entity {
             // INVENTORY ITEMS (TÚI ĐỒ)
             String text;
             if(inventory.size() != maxInventorySize){
-
+                if(gp.obj[i].name == "Key") this.hasKey++;
                 inventory.add(gp.obj[i]);
                 text = "Got a " + gp.obj[i].name + "!";
             }
@@ -463,7 +462,7 @@ public class Player extends Entity {
         if(itemIndex < inventory.size()){
 
             Entity selectedItem = inventory.get(itemIndex);
-            if(selectedItem.type  == type_consumable){
+            if(selectedItem.type  == type_consumable || selectedItem.type  == type_rare){
                 //TODO: Viết code cho phần sử dụng vật phẩm
                 selectedItem.use(this);
                 inventory.remove(itemIndex);

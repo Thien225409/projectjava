@@ -88,6 +88,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame(){
 
+        if(fullScreenOn == true){
+            setFullScreen();
+        }
         gameState = titleState;
         aSetter.setObject();
         aSetter.setNPC();
@@ -95,13 +98,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
-
-        if(fullScreenOn == true){
-            setFullScreen();
-        }
     }
     public void retry(){
-
         player.setDefaultPositions();
         player.restoreLife();
         aSetter.setNPC();
@@ -176,6 +174,7 @@ public class GamePanel extends JPanel implements Runnable {
                     if(monster[i].alive == false) {
                         monster[i].checkDrop();
                         monster[i] = null;
+                        player.monsterKillCount ++;
                     }
                 }
             }

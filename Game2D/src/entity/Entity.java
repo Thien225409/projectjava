@@ -6,9 +6,15 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
+
 import javax.imageio.ImageIO;
 import main.GamePanel;
 import main.UtilityTool;
+import object.OBJ_EnergyDrink;
+import object.OBJ_HP;
+import object.OBJ_HP_half;
+import object.OBJ_Key;
 
 public class Entity {
 
@@ -96,6 +102,8 @@ public class Entity {
     public final int type_npc = 1;
     public final int type_monster = 2;
     public final int type_consumable = 3;
+    public final int type_rare = 4;
+    public final int type_obstacle = 5;
 
     public Entity(GamePanel gp){
         this.gp = gp;
@@ -108,11 +116,26 @@ public class Entity {
     }
     public void speak() {}
     public void use(Entity entity){}
-    public void checkDrop(){}
+    public void checkDrop(){
+        int i = new Random().nextInt(100) + 1;
+        //SET THE MONSTER DROP
+        if(i < 50){
+            dropItem(new OBJ_HP(gp));
+        }
+        if(i >= 50 && i < 75){
+            dropItem(new OBJ_HP_half(gp));
+        }
+        if(i >= 75 && i < 100){
+            dropItem(new OBJ_EnergyDrink(gp));
+        }
+    }
     public void dropItem(Entity droppedItem){
 
         for(int i = 0; i < gp.obj.length; i++){
             if(gp.obj[i] == null){
+                if(gp.player.monsterKillCount == 10){
+                    droppedItem = new OBJ_Key(gp);
+                }
                 gp.obj[i] = droppedItem;
                 gp.obj[i].worldX =  worldX;
                 gp.obj[i].worldY = worldY;
