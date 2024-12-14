@@ -137,7 +137,6 @@ public class GamePanel extends JPanel implements Runnable {
         long lastTime = System.nanoTime();
         long currentTime;
         long timer = 0;
-        int drawCount = 0;
 
         while(gameThread != null){
 
@@ -152,11 +151,9 @@ public class GamePanel extends JPanel implements Runnable {
                 drawToTempScreen();// Vẽ mọi thứ cho buffered image
                 drawToScreen();// Vẽ buffered image ra màn hình                         
                 delta --;
-                drawCount++;
             }
 
             if(timer >= 1000000000){
-                drawCount = 0;
                 timer = 0;
             }
         }
