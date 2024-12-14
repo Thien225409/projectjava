@@ -6,7 +6,11 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
 import object.OBJ_Heart;
 import entity.Entity;
 
@@ -34,9 +38,6 @@ public class UI {
         // arial_80B = new Font("Arial", Font.BOLD, 80);
         arial_80 = new Font("Arial", Font.PLAIN, 80);
         arial_28 = new Font("Arial", Font.PLAIN, 28);
-
-        // OBJ_Key key = new OBJ_Key(gp);
-        // keyImage = key.image;
 
         // CREATE HUD OBJECT (Tạo vật thể "HUD"???)
         Entity heart = new OBJ_Heart(gp);
@@ -247,13 +248,17 @@ public class UI {
         return x;
     }
     public void drawTitleScreen(){
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(getClass().getResourceAsStream("/res/background/background_game.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g2.drawImage(image,0,0,gp.screenWidth,gp.screenHeight,null);
 
-        g2.setColor(new Color(0, 0, 0));
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-
-        // TITLE NAME (Tên tiêu đề)
+        // GAME'S NAME (Tên game)
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 90F));
-        String text = "Name Game Here";
+        String text = "Ánh Sáng Esperia";
         int x = getXforCenterText(text);
         int y = gp.tileSize*3;
 

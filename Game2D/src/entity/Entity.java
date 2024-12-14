@@ -374,6 +374,7 @@ public class Entity {
 
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
+
     public BufferedImage setup(String imagePath, int width, int height){
 
         UtilityTool uTool = new UtilityTool();
